@@ -1,79 +1,96 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mint Starter Kit",
+  "name": "Passionfruit Docs",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#0C0C0B",
+    "light": "#F0F0F0",
+    "dark": "#000000"
+  },
+  "appearance": {
+    "default": "light",
+    "dark": true,
+    "light": true
+  },
+  
+  "background": {
+    "color": {
+      "dark": "#0C0C0B",
+      "light": "#fff"
+    }
+  },
+  "style": {
+    "border": {
+      "dark": "#2D2D2D",
+      "light": "#202020"
+    },
+    "hover": {
+      "dark": "#1A1A1A",
+      "light": "#F0F0F0"
+    }
   },
   "favicon": "/favicon.svg",
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
+        "tab": "Documentation",
+        "icon": "book-open-cover",
         "groups": [
           {
-            "group": "Get Started",
-            "pages": [
-              "index",
-              "quickstart",
-              "development"
-            ]
+            "group": "Get started",
+            "icon": "rocket",
+            "pages": ["start-guide", "concepts"]
           },
           {
-            "group": "Essentials",
-            "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/settings",
-              "essentials/navigation",
-              "essentials/reusable-snippets"
-            ]
+            "group": "Installation",
+            "icon": "download",
+            "pages": ["installation/microsoft-addins", "installation/browser-extensions"]
+          },
+          {
+            "group": "Guides",
+            "icon": "book",
+            "pages": ["guides"]
+          }
+        ],
+        "global": {
+          "anchors": [
+          
+            {
+              "anchor": "Community",
+              "href": "https://mintlify.com/community",
+              "icon": "slack"
+            },
+            {
+              "anchor": "Blog",
+              "href": "https://passionfruit.earth/blog",
+              "icon": "newspaper"
+            }
+          ]
+        }
+      },
+      {
+        "tab": "Changelog",
+        "icon": "list-check",
+        "groups": [
+          {
+            "group": "Changelog",
+            "icon": "clock-rotate-left",
+            "pages": ["changelog"]
           }
         ]
       },
       {
-        "tab": "API Reference",
+        "tab": "Roadmap",
+        "icon": "road",
         "groups": [
           {
-            "group": "API Documentation",
-            "pages": [
-              "api-reference/introduction"
-            ]
-          },
-          {
-            "group": "Endpoint Examples",
-            "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
-            ]
+            "group": "Roadmap",
+            "icon": "map",
+            "pages": ["roadmap"]
           }
         ]
       }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Community",
-          "href": "https://mintlify.com/community",
-          "icon": "slack"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
-        }
-      ]
-    }
+    ]
   },
   "logo": {
     "light": "/logo/light.svg",
@@ -83,20 +100,20 @@
     "links": [
       {
         "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "href": "mailto:support@passionfruit.earth"
       }
     ],
     "primary": {
       "type": "button",
       "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+      "href": "https://app.passionfruit.earth"
     }
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "x": "https://x.com/passionfruit",
+      "github": "https://github.com/passionfruit",
+      "linkedin": "https://linkedin.com/company/passionfruit"
     }
   }
 }

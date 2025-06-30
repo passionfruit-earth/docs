@@ -1,0 +1,125 @@
+---
+title: 'Installation'
+description: 'Install Passionfruit add-ins for Microsoft Office and browser extensions'
+---
+
+# Microsoft Add-ins & Browser Extensions
+
+Passionfruit integrates seamlessly with your existing tools through Microsoft Office add-ins and browser extensions. Choose your platform below to get started.
+
+<CardGroup cols={2}>
+  <Card title="Microsoft Office Add-ins" icon="microsoft" href="#microsoft-office">
+    Add Passionfruit directly to:
+    - Microsoft Excel
+    - Microsoft Word
+    - Microsoft Outlook
+  </Card>
+  <Card title="Browser Extensions" icon="globe" href="#browser-extensions">
+    Access Passionfruit in your browser:
+    - Chrome Extension
+    - Firefox Add-on
+    - Edge Extension
+  </Card>
+</CardGroup>
+
+## Microsoft Office Add-ins
+
+### For Regular Users
+
+1. Open Microsoft Excel, Word, or Outlook
+2. Go to the **Insert** tab
+3. Click **Get Add-ins** or **Office Add-ins**
+4. Search for "Passionfruit"
+5. Click **Add** to install
+
+Alternatively, you can download the add-ins directly:
+- [Excel Add-in](https://appsource.microsoft.com/passionfruit-excel)
+- [Word Add-in](https://appsource.microsoft.com/passionfruit-word)
+- [Outlook Add-in](https://appsource.microsoft.com/passionfruit-outlook)
+
+### For Administrators
+
+To deploy Passionfruit add-ins across your organization:
+
+1. Download the manifest files:
+   - [Excel Manifest](https://static.passionfruit.earth/manifests/excel-manifest.xml)
+   - [Word Manifest](https://static.passionfruit.earth/manifests/word-manifest.xml)
+   - [Outlook Manifest](https://static.passionfruit.earth/manifests/outlook-manifest.xml)
+
+2. Deploy using Microsoft 365 Admin Center:
+   - Navigate to **Settings** > **Integrated apps**
+   - Click **Upload custom apps**
+   - Select the manifest file
+   - Follow the deployment wizard
+
+3. Configure deployment settings:
+   - Choose target users/groups
+   - Set permissions
+   - Enable automatic updates
+
+### Troubleshooting Microsoft Add-ins
+
+If you encounter issues:
+
+1. Verify Office version compatibility
+   - Requires Microsoft 365 or Office 2019+
+   - Must be updated to latest version
+
+2. Check internet connectivity
+   - Add-ins require internet access
+   - Verify corporate firewall settings
+
+3. Clear Office cache
+   - Close all Office applications
+   - Delete contents of `%LOCALAPPDATA%\Microsoft\Office\16.0\Wef\`
+   - Restart Office application
+
+## Browser Extensions
+
+### Installation
+
+1. Choose your browser:
+   - [Chrome Web Store](https://chrome.google.com/webstore/passionfruit)
+   - [Firefox Add-ons](https://addons.mozilla.org/passionfruit)
+   - [Microsoft Edge Add-ons](https://microsoftedge.microsoft.com/addons/passionfruit)
+
+2. Click **Add to Browser** or **Install**
+
+3. Follow browser prompts to complete installation
+
+### Enterprise Deployment
+
+For enterprise-wide deployment:
+
+1. Download the extension package:
+   - [Enterprise MSI Installer](https://static.passionfruit.earth/enterprise/passionfruit-extension.msi)
+
+2. Deploy using Group Policy:
+   ```
+   msiexec /i passionfruit-extension.msi /quiet
+   ```
+
+3. Configure extension policies through your MDM solution
+
+### Troubleshooting Browser Extensions
+
+Common solutions:
+
+1. Update your browser to the latest version
+
+2. Clear browser cache and cookies:
+   - Settings > Privacy and Security
+   - Clear browsing data
+   - Restart browser
+
+3. Check extension permissions:
+   - Manage extensions
+   - Verify Passionfruit permissions
+
+## Support
+
+Need help? Contact our support team:
+
+- Email: [support@passionfruit.earth](mailto:support@passionfruit.earth)
+- Support Portal: [help.passionfruit.earth](https://help.passionfruit.earth)
+- Documentation: [docs.passionfruit.earth](https://docs.passionfruit.earth) 

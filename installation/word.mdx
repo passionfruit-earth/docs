@@ -1,0 +1,113 @@
+---
+title: 'Microsoft Word Add-in'
+description: 'Install and use Passionfruit in Microsoft Word'
+icon: 'file-word'
+---
+
+<img
+  className="block dark:hidden"
+  src="/images/word-light.png"
+  alt="Word installation header"
+/>
+<img
+  className="hidden dark:block"
+  src="/images/word-dark.png"
+  alt="Word installation header"
+/>
+
+## Installation Options
+
+<CardGroup cols={2}>
+  <Card title="Microsoft Store" icon="store" href="#microsoft-store">
+    Quick installation through the official Microsoft Store
+  </Card>
+  <Card title="Manual Deployment" icon="gear" href="#manual-deployment">
+    For IT administrators and enterprise deployment
+  </Card>
+</CardGroup>
+
+## Microsoft Store Installation
+
+1. Open Microsoft Word
+2. Navigate to the **Insert** tab
+3. Click **Get Add-ins** or **Office Add-ins**
+4. Search for "Passionfruit"
+5. Click **Add** to install
+
+<Note>
+  This method requires administrator privileges on your computer. If you don't have admin rights, contact your IT department for assistance.
+</Note>
+
+## Manual Deployment
+
+### For IT Administrators
+
+1. Download the Word manifest file:
+   - [Word Manifest](https://static.passionfruit.earth/manifests/word-manifest.xml)
+
+2. Deploy via Microsoft 365 Admin Center:
+   - Go to **Settings** > **Integrated apps**
+   - Select **Upload custom apps**
+   - Choose the manifest file
+   - Complete the deployment wizard
+
+3. Configure deployment settings:
+   - Select target users/groups
+   - Set appropriate permissions
+   - Enable automatic updates
+
+## Using the Word Add-in
+
+1. Access Passionfruit from the **Home** tab
+2. Click the **Passionfruit** button to open the sidebar
+3. Log in with your Passionfruit credentials
+4. Start using features:
+   - Import questionnaire templates
+   - Generate responses
+   - Access the answer library
+   - Use AI-powered writing assistance
+
+## Troubleshooting
+
+### Common Issues
+
+<AccordionGroup>
+  <Accordion title="Add-in Not Loading">
+    1. Verify Word version (requires 2019 or later)
+    2. Check internet connection
+    3. Clear Office cache:
+       - Close Word
+       - Delete contents of `%LOCALAPPDATA%\Microsoft\Office\16.0\Wef\`
+       - Restart Word
+  </Accordion>
+  
+  <Accordion title="Installation Failed">
+    1. Ensure you have admin rights
+    2. Check system requirements:
+       - Windows 10 or later
+       - Office 365 or Word 2019+
+    3. Disable antivirus temporarily
+  </Accordion>
+  
+  <Accordion title="Performance Issues">
+    1. Update Word to latest version
+    2. Check available RAM (minimum 4GB recommended)
+    3. Clear Word cache and temporary files
+  </Accordion>
+</AccordionGroup>
+
+### System Requirements
+
+- Windows 10 or later
+- Microsoft 365 or Word 2019+
+- 4GB RAM minimum
+- Internet connection
+- Admin rights for installation
+
+## Support
+
+Need help? Our support team is ready to assist:
+
+- Email: [support@passionfruit.earth](mailto:support@passionfruit.earth)
+- Support Portal: [help.passionfruit.earth](https://help.passionfruit.earth)
+- Documentation: [docs.passionfruit.earth](https://docs.passionfruit.earth) 
