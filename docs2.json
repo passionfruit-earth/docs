@@ -1,0 +1,155 @@
+{
+    "$schema": "https://mintlify.com/docs.json",
+    "theme": "mint",
+    "name": "Passionfruit Docs",
+    "colors": {
+      "primary": "#0C0C0B",
+      "light": "#F0F0F0",
+      "dark": "#000000"
+    },
+    "appearance": {
+      "default": "light",
+      "dark": true,
+      "light": true
+    },
+    
+    "background": {
+      "color": {
+        "dark": "#0C0C0B",
+        "light": "#FCFCF9"
+      }
+    },
+    "style": {
+      "border": {
+        "dark": "#2D2D2D",
+        "light": "#202020"
+      },
+      "hover": {
+        "dark": "#1A1A1A",
+        "light": "#F0F0F0"
+      }
+    },
+    "favicon": "/icons/favicon.svg",
+    "navigation": {
+      "tabs": [
+        {
+          "tab": "Docs",
+          "icon": "book-open-cover",
+          "groups": [
+            {
+              "group": "Getting Started",
+              "icon": "rocket",
+              "pages": ["start-guide", "concepts"]
+            },
+            {
+              "group": "Knowledge Base",
+              "icon": "brain",
+              "collapsed": true,
+              "pages": [
+                "knowledge-base/overview"
+              ]
+            },
+            {
+              "group": "Questionnaires",
+              "icon": "clipboard-list",
+              "collapsed": true,
+              "pages": [
+                "questionnaires/overview",
+                "questionnaires/creating",
+                "questionnaires/templates",
+                "questionnaires/importing",
+                "questionnaires/exporting",
+                "questionnaires/sharing",
+                "questionnaires/history"
+              ]
+            },
+            {
+              "group": "Answers",
+              "icon": "message-check",
+              "collapsed": true,
+              "pages": [
+                "answers/overview",
+                "answers/ai-assistance",
+                "answers/reviewing",
+                "answers/versioning",
+                "answers/validation",
+                "answers/history"
+              ]
+            },
+            {
+              "group": "Extensions",
+              "icon": "browser",
+              "collapsed": true,
+              "pages": [
+                "extensions/overview",
+                "extensions/installation",
+                "extensions/configuration",
+                "extensions/usage",
+                "extensions/troubleshooting"
+              ]
+            }
+          ],
+          "global": {
+            "anchors": [
+              {
+                "anchor": "Community",
+                "href": "https://passionfruit.earth/community",
+                "icon": "slack"
+              },
+              {
+                "anchor": "Blog",
+                "href": "https://passionfruit.earth/blog",
+                "icon": "newspaper"
+              }
+            ]
+          }
+        },
+        {
+          "tab": "Changelog",
+          "icon": "list-check",
+          "groups": [
+            {
+              "group": "Changelog",
+              "icon": "clock-rotate-left",
+              "pages": ["changelog"]
+            }
+          ]
+        },
+        {
+          "tab": "Roadmap",
+          "icon": "road",
+          "groups": [
+            {
+              "group": "Roadmap",
+              "icon": "map",
+              "pages": ["roadmap"]
+            }
+          ]
+        }
+      ]
+    },
+    "logo": {
+      "light": "/logo/light.svg",
+      "dark": "/logo/dark.svg"
+    },
+    "navbar": {
+      "links": [
+        {
+          "label": "Support",
+          "href": "mailto:hello@passionfruit.earth"
+        }
+      ],
+      "primary": {
+        "type": "button",
+        "label": "Dashboard",
+        "href": "https://app.passionfruit.earth"
+      }
+    },
+    "footer": {
+      "socials": {
+        "x": "https://x.com/passionfruit",
+        "github": "https://github.com/passionfruit",
+        "linkedin": "https://linkedin.com/company/passionfruit"
+      }
+    }
+  }

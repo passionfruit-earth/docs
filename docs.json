@@ -37,32 +37,19 @@
         "icon": "book-open-cover",
         "groups": [
           {
-            "group": "Get started",
+            "group": "Getting Started",
             "icon": "rocket",
-            "pages": ["start-guide", "concepts"]
-          },
-          {
-            "group": "Installation",
-            "icon": "download",
-            "pages": ["installation/microsoft-addins"]
-          },
-          {
-            "group": "Guides",
-            "icon": "book",
-            "pages": ["guides"]
+            "pages": ["start-guide", "concepts", "installation/microsoft-addins"]
           }
+         
+         
         ],
         "global": {
           "anchors": [
-          
-            {
-              "anchor": "Community",
-              "href": "https://mintlify.com/community",
-              "icon": "slack"
-            },
+           
             {
               "anchor": "Blog",
-              "href": "https://passionfruit.earth/blog",
+              "href": "https://passionfruit.earth/resources",
               "icon": "newspaper"
             }
           ]
