@@ -16,7 +16,7 @@
   "background": {
     "color": {
       "dark": "#0C0C0B",
-      "light": "#fff"
+      "light": "#FCFCF9"
     }
   },
   "style": {
@@ -29,11 +29,11 @@
       "light": "#F0F0F0"
     }
   },
-  "favicon": "/favicon.svg",
+  "favicon": "/icons/favicon.svg",
   "navigation": {
     "tabs": [
       {
-        "tab": "Documentation",
+        "tab": "Docs",
         "icon": "book-open-cover",
         "groups": [
           {
@@ -44,7 +44,7 @@
           {
             "group": "Installation",
             "icon": "download",
-            "pages": ["installation/microsoft-addins", "installation/browser-extensions"]
+            "pages": ["installation/microsoft-addins"]
           },
           {
             "group": "Guides",
@@ -100,7 +100,7 @@
     "links": [
       {
         "label": "Support",
-        "href": "mailto:support@passionfruit.earth"
+        "href": "mailto:hello@passionfruit.earth"
       }
     ],
     "primary": {
