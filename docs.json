@@ -39,10 +39,15 @@
           {
             "group": "Getting Started",
             "icon": "rocket",
-            "pages": ["start-guide", "concepts", "installation/microsoft-addins"]
+            "pages": ["docs/installation/start-guide", "docs/installation/concepts", "docs/installation/microsoft-addins"]
+          },
+        
+        
+            {
+            "group": "MS Excel",
+            "icon": "file-excel",
+            "pages": ["docs/excel-functions"]
           }
-         
-         
         ],
         "global": {
           "anchors": [
