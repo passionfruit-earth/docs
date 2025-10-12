@@ -109,7 +109,6 @@
               {
             "group": "Auto-fill",
             "pages": [
-              "docs/fill-questionnaires/overview",
               "docs/fill-questionnaires/excel-functions"
               
             ]
@@ -160,7 +159,6 @@
         "groups": [
           {
             "group": "Roadmap",
-            "icon": "map",
             "pages": ["roadmap"]
           }
         ]
