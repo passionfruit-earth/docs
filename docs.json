@@ -68,7 +68,7 @@
               "docs/knowledge-base/evidence-source-preview",
               "docs/knowledge-base/evidence-auto-tagging",
               "docs/knowledge-base/delete-evidence",
-              "docs/knowledge-base/evidence-filter"
+              "docs/knowledge-base/evidence-select"
             ]
           },
               {
@@ -78,7 +78,7 @@
               "docs/knowledge-base/entities-create",
               "docs/knowledge-base/entities-edit",
               "docs/knowledge-base/entities-delete",
-              "docs/knowledge-base/entities-search"
+              "docs/knowledge-base/entities-select"
             ]
           },
               {
