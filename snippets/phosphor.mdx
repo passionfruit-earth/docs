@@ -1,0 +1,7 @@
+export const PhIcon = ({ name, size = 18, weight = 'fill', color, opacity = 0.85, title = '' }) => (
+  <span style={{ display: 'inline-block', verticalAlign: 'text-bottom', opacity }} title={title || `${name} icon`}>
+    <Icon icon={`https://unpkg.com/@phosphor-icons/core@2.1.1/assets/${weight}/${name}.svg`} size={size} color={color} />
+  </span>
+);
+
+

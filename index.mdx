@@ -3,24 +3,38 @@ title: 'Passionfruit Docs'
 description: 'Your hub for building, integrating, and staying up to date with Passionfruit.'
 ---
 
+import { PhIcon } from '/snippets/phosphor.mdx';
+
+
 Empowering you to build, integrate, and grow with Passionfruit. Access everything you need to get started, explore our API, track product changes, and see what's next.
 
+<div id="documentation" />
 <CardGroup cols={2}>
-  <Card title="Get Started" icon="rocket" href="/guides">
+  <Card title={<><PhIcon name="rocket" /> Get Started</>} href="/docs/installation/start-guide">
     Step-by-step onboarding and best practices for new users.
   </Card>
   
-  <Card title="Excel Functions" icon="table" href="/docs/excel-functions">
+  <Card title={<><PhIcon name="gauge" /> Main App</>} href="/docs/main/overview">
+    Your control center: chat, knowledge, questionnaires, insights, and users.
+  </Card>
+
+  <Card title={<><PhIcon name="browser" /> Add-ins</>} href="/docs/addins/overview">
+    Use Passionfruit where you work: Excel, Word, Chrome, and Edge.
+  </Card>
+
+  <Card title={<><PhIcon name="table" /> Excel Functions</>} href="/docs/excel-functions">
     Use Excel functions to answer questions in bulk with Passionfruit AI.
   </Card>
   
-  <Card title="Changelog" icon="clock-rotate-left" href="/changelog">
+  <div id="changelog" />
+  <Card title={<><PhIcon name="clock-counter-clockwise" /> Changelog</>} href="/changelog">
     Stay up to date with the latest product updates and improvements.
   </Card>
-  <Card title="Roadmap" icon="road" href="/roadmap">
+  <div id="roadmap" />
+  <Card title={<><PhIcon name="map-trifold" /> Roadmap</>} href="/roadmap">
     See what we're working on and what's coming soon.
   </Card>
-  <Card title="Support" icon="life-ring" href="mailto:hello@passionfruit.earth">
+  <Card title={<><PhIcon name="lifebuoy" /> Support</>} href="mailto:hello@passionfruit.earth">
     Need help? Contact our support team for assistance.
   </Card>
 </CardGroup>

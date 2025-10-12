@@ -1,77 +1,70 @@
 ---
-title: 'Conceptual Model'
-description: 'Understanding how Passionfruit thinks about questionnaires, answers, and compliance.'
+title: 'Concepts'
+description: 'Gain a basic understanding of Passionfruit to efficiently set up your workspace and fill your first questionnaire.'
 ---
 
 Passionfruit helps companies answer complex questionnaires at scale, especially in sustainability, quality, and compliance reporting. To do this effectively, it structures its domain around a few core concepts. Understanding these concepts will help you make the most of Passionfruit.
 
+
+## Core concepts (2‑minute read)
+
+- Questionnaire: the unit of work you complete in Excel, Word, or a web portal. Progress and reviews are tracked.
+- Grounded answers: every answer is generated from your own sources and context, and always includes citations.
+- In the loop: you review and approve; approved answers can be saved to the Answer Library for reuse.
+- Sources: [Evidence](/docs/knowledge-base/evidence), [Answer Library](/docs/knowledge-base/answer-library), and [Entities](/docs/knowledge-base/entities).
+- Where you use it: Home web app and Extensions (Office add‑ins and Browser). Everything stays in sync.
+
+Get started: [Start a questionnaire](/docs/answers/start-questionnaire)
+
+
+
+
+
 ## Questionnaires
 
-A Questionnaire is the core unit of work in Passionfruit. It represents a set of questions a company needs to answer—often coming from sustainability frameworks like CDP, CSRD, EcoVadis, or customer-specific audits.
+A Questionnaire is at the heart of Passionfruit's functionality. These questionnaires vary greatly, covering areas such as ESG, quality, packaging, and product specifications, and must often be completed swiftly and precisely.
+Use the Office add-ins and the browser extension to fill questionnaires in-place; all changes sync with Passionfruit. You can update answers, evidence, and entity details from within the add-ins or the Home app. 
 
-A questionnaire in Passionfruit can be:
-- Created manually
-- Generated based on previous templates
-- An Excel, Word or browser form. 
 
-Every questionnaire is uniquely identified and versioned, enabling teams to track changes over time and reuse previous work.
 
-## Questions & Answers
+## Knowledge
+The primary focus of Passionfruit is to ensure that the most current and pertinent information is available within the system, enabling the efficient completion of questionnaires. Passionfruit centralizes your company knowledge, ensuring that answers are consistent, traceable, and easy to reuse.
 
-Each questionnaire consists of multiple Questions, which can be:
-- Free text questions
-- Multiple-choice questions
-- Tables or matrix-style inputs
-- Numeric fields
-- File uploads or evidence requirements
 
-Answers are stored alongside questions. Passionfruit ensures:
-- All answers are tracked with metadata (who answered, when, and with what evidence)
-- Versioning to maintain historical records
-- Semantic mapping so similar questions can be recognized across questionnaires
+### Evidence
+Evidence captures the documents, links, and snippets that substantiate answers. Each item is tracked for approval, freshness, and version history. Evidence can be linked to questions and answers, and assigned to relevant entities so provenance remains clear and auditable.
 
-## Approved Answer Library
+### Entities
+Entities represent organisation records with key attributes such as name and address. They can be suppliers, clients, or production locations, and may be internal or external to your organisation. Answers and evidence can be assigned to entities to anchor information to the correct context, ensuring consistent terminology and enabling relationships (e.g., product → certifications).
 
+### Answer Library
 Passionfruit maintains an Approved Answer Library. This is a knowledge base of previously vetted answers that can be reused in new questionnaires.
-
-Benefits of the library:
-- Speeds up questionnaire completion
-- Ensures consistency in responses
-- Reduces errors and omissions
-- Stores references to supporting documents (e.g. policies, reports)
-
 Whenever Passionfruit recognizes that a question is similar to a past one, it can suggest an answer from the library for review.
 
-## Knowledge base
 
-Many questionnaires require Evidence — documents, spreadsheets, certificates, or policies that substantiate the answers. Passionfruit manages evidence as first-class objects:
-- Stored in dedicated evidence buckets (e.g. S3)
-- Version-controlled to ensure the latest documents are used
-- Linked directly to questions and answers
-- Health-checked for validity, approval status, and expiry dates
+## Agent
 
-Evidence integrity is critical for audits and regulatory compliance.
+ The Answer Agent is an AI-powered assistant that helps you locate and compose compliant answers from your workspace knowledge. It sits on top of your Approved Answer Library, Evidence, and Entities, using retrieval-augmented generation to propose answers that are traceable, cited, and ready to reuse. It prioritises previously approved content and always shows where information comes from so you can verify it.
 
-## Workflows
 
-Passionfruit structures the process of completing questionnaires into Workflows, supporting:
-- Drafting and reviewing answers
-- Tagging questions for team members
-- Tracking progress across large questionnaires
-- Managing approval cycles
 
-Workflows help teams collaborate and ensure that complex submissions are completed accurately and on time.
+### Context
+The context that the agent can search in is comprehensive and can be managed through filtering and self-management. It includes files, symbols, and conversation history, providing the AI with a rich set of information to generate accurate and relevant responses.
 
-## Automation & AI
 
-A major goal of Passionfruit is to reduce the manual work involved in questionnaire answering. It uses AI for:
-- Semantic search: finding similar past questions
-- Answer generation: drafting responses based on past answers and documents
-- Formatting answers into required structures (e.g. tables, free text)
-- Confidence scoring to signal how reliable an auto-suggested answer might be
 
-Even when using AI, Passionfruit keeps humans in the loop. Users always review and approve suggested answers.
+## Workspace
 
+A workspace is your organisation’s secure hub in Passionfruit. It contains your questionnaires, answers, evidence, entities, members, and permissions. The same workspace is available in the Home web app and the Office/browser add-ins—everything stays in sync.
+
+- Members & roles: Invite internal colleagues and external partners with scoped access. Assign roles to control who can view, edit, review, and approve.
+- Shared data model: Answers, evidence, and entities are linked so context travels with your work, including the Approved Answer Library.
+- Integrations: Connect sources like file storage or identity providers to streamline evidence collection and access.
+- Governance: Fine-grained permissions, version history, and an auditable activity log ensure compliance and accountability.
+
+
+## Collaboration
+Passionfruit enables teams across and between organisations to collaborate safely. You can share questionnaires, answers, evidence, and entities with partners while keeping permissions scoped to what each party should see and edit. Passionfruit automatically tracks who did what and when—providing an auditable trail of changes, reviews, and approvals.
 
 ## Security & Compliance
 

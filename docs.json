@@ -3,7 +3,7 @@
   "theme": "mint",
   "name": "Passionfruit Docs",
   "colors": {
-    "primary": "#0C0C0B",
+    "primary": "#5B5B5B",
     "light": "#F0F0F0",
     "dark": "#000000"
   },
@@ -16,13 +16,13 @@
   "background": {
     "color": {
       "dark": "#0C0C0B",
-      "light": "#ffffff"
+      "light": "#FDFDFC"
     }
   },
   "style": {
     "border": {
-      "dark": "#2D2D2D",
-      "light": "#202020"
+      "dark": "rgba(255, 255, 255, 0.04)",
+      "light": "rgba(0, 0, 0, 0.04)"
     },
     "hover": {
       "dark": "#1A1A1A",
@@ -30,31 +30,115 @@
     }
   },
   "favicon": "/icons/favicon.svg",
+  "css": ["/docs/custom.css"],
   "navigation": {
     "tabs": [
       {
         "tab": "Docs",
-        "icon": "book-open-cover",
+        "collapsed": true,
         "groups": [
           {
             "group": "Getting Started",
             "icon": "rocket",
-            "pages": ["docs/installation/start-guide", "docs/installation/concepts", "docs/installation/microsoft-addins"]
+            "pages": ["docs/installation/start-guide", "docs/installation/concepts", "docs/installation/apps",  "docs/installation/install"]
           },
-        
-        
-            {
-            "group": "MS Excel",
-            "icon": "file-excel",
-            "pages": ["docs/excel-functions"]
+          {
+            "group": "Workspace",
+            "icon": "buildings",
+            "collapsed": true,
+            "pages": [
+              "docs/installation/profile",
+              "docs/installation/organisation"
+            ]
+          },
+      
+          
+          {
+            "group": "Knowledge Base",
+            "icon": "folder-open",
+            "collapsed": true,
+            "pages": [
+              
+               {
+            "group": "Evidence",
+            "collapsed": true,
+              "pages": [
+              "docs/knowledge-base/evidence-upload",
+              "docs/knowledge-base/evidence-organize",
+              "docs/knowledge-base/evidence-source-preview",
+              "docs/knowledge-base/evidence-auto-tagging",
+              "docs/knowledge-base/delete-evidence",
+              "docs/knowledge-base/evidence-filter"
+            ]
+          },
+              {
+            "group": "Entities",
+            "collapsed": true,
+            "pages": [
+              "docs/knowledge-base/entities-create",
+              "docs/knowledge-base/entities-edit",
+              "docs/knowledge-base/entities-delete",
+              "docs/knowledge-base/entities-search"
+            ]
+          },
+              {
+            "group": "Answer Library",
+            "collapsed": true,
+            "pages": [
+              "docs/knowledge-base/answer-library-create",
+              "docs/knowledge-base/answer-library-edit",
+              "docs/knowledge-base/answer-library-delete",
+              "docs/knowledge-base/answer-library-select"
+            ]
+          }
+            ]
+          },
+          
+          {
+            "group": "Fill questionnaires",
+            "icon": "clipboard-list",
+            "collapsed": false,
+            "pages": [
+              "docs/fill-questionnaires/start-questionnaire",
+              "docs/fill-questionnaires/ask-question",
+              "docs/fill-questionnaires/search-context",
+              "docs/fill-questionnaires/generate-answers",
+              "docs/fill-questionnaires/review-answers",
+              "docs/fill-questionnaires/place-answers",
+              "docs/fill-questionnaires/save-to-answer-library",
+              {
+            "group": "Auto-fill",
+            "pages": [
+              "docs/fill-questionnaires/overview",
+              "docs/fill-questionnaires/excel-functions"
+              
+            ]
+          }
+            ]
+          },
+          
+         
+          {
+            "group": "Integrations",
+            "icon": "plug",
+            "collapsed": true,
+            "pages": ["docs/sharepoint"]
+          }
+        ,
+          {
+            "group": "Analytics",
+            "icon": "chart-line-up",
+            "collapsed": true,
+            "pages": [
+              "docs/analytics/insights"
+            ]
           }
         ],
         "global": {
           "anchors": [
-           
             {
               "anchor": "Blog",
-              "href": "https://passionfruit.earth/resources",
+              "href": "https://passionfruit.earth/blog",
               "icon": "newspaper"
             }
           ]
@@ -62,7 +146,6 @@
       },
       {
         "tab": "Changelog",
-        "icon": "list-check",
         "groups": [
           {
             "group": "Changelog",
@@ -73,7 +156,7 @@
       },
       {
         "tab": "Roadmap",
-        "icon": "road",
+
         "groups": [
           {
             "group": "Roadmap",
