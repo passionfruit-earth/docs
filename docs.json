@@ -173,7 +173,7 @@
   },
   "integrations": {
     "posthog": {
-        "apiKey": "phc_WlP73lAq2O6cnyR3IHwu9D2M3c1kQZeqPcldSxV8sAr"
+        "apiKey": "phc_WlP73lAq2O6cnyR3IHwu9D2M3c1kQZeqPcldSxV8sAr","apiHost": "https://eu.posthog.com"
     }
 },
   "footer": {
