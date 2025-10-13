@@ -171,6 +171,11 @@
       "href": "https://app.passionfruit.earth"
     }
   },
+  "integrations": {
+    "posthog": {
+        "apiKey": "phc_WlP73lAq2O6cnyR3IHwu9D2M3c1kQZeqPcldSxV8sAr"
+    }
+},
   "footer": {
     "socials": {
       "x": "https://x.com/passionfruit",
