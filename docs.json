@@ -40,7 +40,7 @@
           {
             "group": "Getting Started",
             "icon": "rocket",
-            "pages": ["docs/installation/start-guide", "docs/installation/concepts", "docs/installation/apps",  "docs/installation/install"]
+            "pages": ["docs/installation/start-guide", "docs/installation/concepts", "docs/installation/apps",  "docs/installation/install", "docs/installation/microsoft-addins"]
           },
           {
             "group": "Workspace",

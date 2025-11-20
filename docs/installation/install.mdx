@@ -43,7 +43,7 @@ description: 'Install Passionfruit for Microsoft Office Add-in and Browser Exten
 
     ## Troubleshooting
 
-    ### Common Issues
+
 
     <AccordionGroup>
       <Accordion title="Add-in Not Loading">
@@ -62,6 +62,23 @@ description: 'Install Passionfruit for Microsoft Office Add-in and Browser Exten
         1. Update Office to the latest version
         2. Disable conflicting add-ins
         3. Restart Office application
+      </Accordion>
+      
+      <Accordion title="Refresh after new release">
+        After a new release, you may need to refresh the add-in manifest to see the latest changes in Excel or Word. You can do this yourself; if you don't have the required permissions, ask your Microsoft 365 admin. Start by refreshing; only remove and re-add if the refresh doesn't show changes.
+        1. Close all Office apps (Excel, Word, PowerPoint, Outlook)
+        2. Reopen Excel/Word
+        3. Go to `Home` in your top navigation. `My Add-ins` → `More Add-ins` → `Admin managed`, then click `Refresh` (top-right) 
+        4. If changes still don't appear, remove Passionfruit from `My Add-ins`, then add it back from `My Add-ins` or the store
+        <div className="my-4 rounded-lg overflow-hidden border">
+        <iframe
+          width="100%"
+          height="360"
+          src="https://www.loom.com/embed/eab1a0f72846490da1d8d69eabf113df?sid=docs"
+          frameBorder="0"
+          allowFullScreen
+        />
+        </div>
       </Accordion>
     </AccordionGroup>
 
@@ -116,8 +133,6 @@ description: 'Install Passionfruit for Microsoft Office Add-in and Browser Exten
     3. Follow the browser prompts to complete installation
 
     ## Troubleshooting
-
-    ### Common Issues
 
     <AccordionGroup>
       <Accordion title="Extension Not Loading">
