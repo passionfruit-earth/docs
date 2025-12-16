@@ -48,7 +48,8 @@
             "collapsed": true,
             "pages": [
               "docs/installation/profile",
-              "docs/installation/organisation"
+              "docs/installation/organisation",
+              "docs/installation/sso-setup"
             ]
           },
       

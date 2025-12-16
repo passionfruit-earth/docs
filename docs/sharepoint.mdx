@@ -8,7 +8,13 @@ Connect Passionfruit to SharePoint Online to discover and reuse the right eviden
 
 <Info> Available on request. Email `hello@passionfruit.earth` to get started.</Info>
 
+#### Authentication and Security
 
+The SharePoint integration leverages Microsoft Entra ID for secure authentication and access control. This ensures:
+
+- **Seamless SSO**: If your organisation has configured [Single Sign-On with Microsoft Entra ID](/docs/installation/sso-setup), users can access SharePoint-synced evidence using the same credentials
+- **Enterprise security**: Benefit from your existing Microsoft Entra ID security policies, including multi-factor authentication and conditional access rules
+- **Secure data access**: All SharePoint access is authenticated through Microsoft Entra ID, ensuring only authorized users can sync and access evidence
 
 #### Purpose
 Syncing evidence files with your Knowledge Base keeps your source documents authoritative while making them instantly reusable across Passionfruit.
@@ -17,6 +23,15 @@ Syncing evidence files with your Knowledge Base keeps your source documents auth
 - **Always up to date**: Changes at the source are reflected automatically, removing manual re-uploads and stale copies.
 - **Governance and analytics**: Centralized visibility for expiry tracking, approvals, ownership, and usage insights.
 - **Speed and consistency**: Reuse approved evidence and answers, reducing duplicate work and ensuring consistent responses.
+
+#### Evidence Syncing
+
+The SharePoint integration enables automatic evidence syncing from your SharePoint sites to your Passionfruit Knowledge Base. This allows you to:
+
+- **Select specific sources**: Choose which SharePoint sites, libraries, or folders should be synced with your Knowledge Base
+- **Automatic updates**: Evidence files are automatically indexed and updated when changes occur in SharePoint
+- **Search and discovery**: Synced evidence becomes searchable within Passionfruit, making it easy to find and reference during questionnaire filling
+- **Compliance tracking**: Maintain visibility into evidence sources, ownership, and modification dates directly from SharePoint metadata
 
 #### What is synced
 - Selected sites, libraries, or folders and their files.
