@@ -28,10 +28,8 @@ SSO setup requires coordination between your IT team and the Passionfruit team. 
 **Your responsibilities:**
 
 1. **Register Passionfruit as an Enterprise Application** in Microsoft Entra ID
-2. **Configure SAML-based SSO** with the details provided by the Passionfruit team
-3. **Set up user and group assignments** to control who can access Passionfruit via SSO
-4. **Configure claims mapping** to ensure user information is properly passed to Passionfruit
-5. **Test the integration** to verify everything works correctly
+2. **Set up user and group assignments** to control who can access Passionfruit via SSO
+3. **Test the integration** to verify everything works correctly
 
 **Prerequisites:**
 
@@ -58,39 +56,14 @@ When registering the application, configure the following settings:
 
 <img src="/images/workspace/entra-passionfruit-integration.png" className="w-full border-none h-auto my-0" alt="Microsoft Entra ID application registration page showing Name, Supported account types, and Redirect URI configuration" />
 
-**Step 2: Configure SAML-based Single Sign-On**
-
-1. In the newly created application, go to **Manage** > **Single sign-on**
-2. Select **SAML** as the method
-3. The Passionfruit team will provide you with the following configuration details:
-   - **Identifier (Entity ID)**: Unique identifier for Passionfruit
-   - **Reply URL (Assertion Consumer Service URL)**: Where Microsoft Entra ID sends the SAML response
-   - **Sign-on URL**: The initial sign-on URL for Passionfruit
-4. Enter these values in the corresponding fields
-5. Click **Save** to apply the configuration
-6. Download the **Federation Metadata XML** file and share it with the Passionfruit team
-
-**Step 3: Configure User Attributes and Claims**
-
-1. In the SAML configuration, click **Edit** next to **Attributes & Claims**
-2. Ensure the following claims are configured:
-   - **Email**: Maps to `user.mail` or `user.userprincipalname`
-   - **User Principal Name (UPN)**: Maps to `user.userprincipalname`
-   - **Name**: Maps to `user.displayname` or `user.givenname`
-3. The Passionfruit team will specify any additional required claims
-4. Click **Save** to apply the changes
-
-**Step 4: Assign Users and Groups**
+**Step 2: Assign Users and Groups**
 
 1. Go to **Manage** > **Users and groups**
 2. Click **Add user/group**
 3. Select the users or groups who should have access to Passionfruit via SSO
-4. Choose the assignment type:
-   - **Required**: Users must use SSO to access Passionfruit
-   - **Optional**: Users can choose between SSO and password authentication
-5. Click **Assign**
+4. Click **Assign**
 
-**Step 5: Test the Integration**
+**Step 3: Test the Integration**
 
 1. Use the **Test this application** option in Microsoft Entra ID to verify the SAML configuration
 2. Test with a sample user account to ensure:
@@ -99,7 +72,7 @@ When registering the application, configure the following settings:
    - User attributes are correctly passed to Passionfruit
    - Access control and permissions are working as expected
 
-**Step 6: Enable SSO**
+**Step 4: Enable SSO**
 
 1. Once testing is complete, ensure SSO is enabled for the application
 2. Communicate the SSO status to your users
@@ -109,10 +82,12 @@ When registering the application, configure the following settings:
 
 #### User Experience
 
-Once SSO is configured, users have two authentication options:
+Once SSO is configured, users can authenticate using **either** SSO **or** password login, but not both:
 
 - **Sign in with Microsoft (SSO)**: Users can click "Sign in with Microsoft" and authenticate using their Microsoft Entra ID credentials. This option respects all your organisation's security policies, including MFA requirements.
-- **Sign in with password**: Users can continue using their Passionfruit password if they prefer, or if SSO is not yet configured for their account.
+- **Sign in with password**: Users can continue using their Passionfruit password if SSO is not enabled for their account.
+
+<Warning> Users must choose one authentication method. Once SSO is enabled for a user, they will use SSO for authentication and cannot use password login. Similarly, users who continue using password login will not have access to SSO until it is enabled for their account.</Warning>
 
 SSO users benefit from your organisation's Microsoft Entra ID security policies, including:
 - Multi-factor authentication requirements

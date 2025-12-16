@@ -30,6 +30,11 @@
     }
   },
   "favicon": "/icons/favicon.svg",
+  "meta": {
+    "image": "/images/workspace/entra-passionfruit-integration.png",
+    "title": "Passionfruit Docs",
+    "description": "Your hub for building, integrating, and staying up to date with Passionfruit."
+  },
   "css": ["/docs/custom.css"],
   "navigation": {
     "tabs": [
