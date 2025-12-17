@@ -1,0 +1,122 @@
+---
+title: 'Single Sign-On (SSO)'
+description: 'Enable SSO for your organisation to provide seamless and secure authentication'
+---
+
+#### Overview
+
+Single Sign-On (SSO) lets your team sign in to Passionfruit using the same login they already use for work—no need to remember another password. When enabled, users click "Sign in with Microsoft" (or your company's login provider) and they're automatically logged in.
+
+This is a managed setup: you request access, and we work with your IT team to get everything configured.
+
+<Info> Available on request. Email `hello@passionfruit.earth` to get started.</Info>
+
+#### What is SSO?
+
+Instead of creating a separate Passionfruit password, SSO lets users sign in with their work account. When someone clicks "Sign in with Microsoft," they're redirected to your company's login page, enter their work credentials, and then come back to Passionfruit—already logged in.
+
+This means your team uses the same login they use for email, Microsoft 365, and other work tools. All the security settings your IT team has configured (like requiring two-factor authentication) automatically apply to Passionfruit too.
+
+#### Why use SSO?
+
+- **One less password to remember**: Users sign in with their work account
+- **Better security**: Your IT team's security rules (like two-factor authentication) automatically apply
+- **Easier access**: No need to create or reset Passionfruit passwords
+- **Simpler management**: When someone leaves your company, removing their access is handled through your existing systems
+
+#### Providers
+
+Choose your identity provider below to see setup instructions and details specific to that provider.
+
+<Tabs>
+  <Tab title="Microsoft Entra" icon="microsoft">
+    
+    Enable Single Sign-On (SSO) for your organisation using Microsoft Entra ID (formerly Azure Active Directory). This integration allows users to sign in to Passionfruit using their existing Microsoft credentials, eliminating the need for separate passwords.
+
+    This integration is offered as a managed setup: you request access, and we configure everything with your IT team using Microsoft Entra ID.
+
+    #### For administrators
+
+    SSO setup requires coordination between your IT team and the Passionfruit team. As an IT manager, you'll need to configure settings in Microsoft Entra ID while the Passionfruit team provides the necessary configuration details and guides you through the process.
+
+    **Your responsibilities:**
+
+    1. **Register Passionfruit as an Enterprise Application** in Microsoft Entra ID
+    2. **Set up user and group assignments** to control who can access Passionfruit via SSO
+    3. **Test the integration** to verify everything works correctly
+
+    **Prerequisites:**
+
+    - Administrative access to the [Microsoft Entra admin center](https://entra.microsoft.com/)
+    - Global Administrator or Application Administrator permissions in Microsoft Entra ID
+    - A designated IT contact person to coordinate with the Passionfruit team
+
+    **Setup Steps:**
+
+    **Step 1: Register Passionfruit as an Enterprise Application**
+
+    1. Sign in to the [Microsoft Entra admin center](https://entra.microsoft.com/)
+    2. Navigate to **Identity** > **Applications** > **Enterprise applications**
+    3. Click **New application** > **Create your own application**
+    4. Enter a name for the application (e.g., "Passionfruit")
+    5. Select **Integrate any other application you don't find in the gallery (Non-gallery)**
+    6. Click **Create**
+
+    When registering the application, configure the following settings:
+
+    - **Name**: Enter "Passionfruit" as the display name
+    - **Supported account types**: Select "Accounts in this organizational directory only (Single tenant)"
+    - **Redirect URI**: The Passionfruit team will provide the redirect URI to configure
+
+    <img src="/images/workspace/entra-passionfruit-integration.png" className="w-full border-none h-auto my-0" alt="Microsoft Entra ID application registration page showing Name, Supported account types, and Redirect URI configuration" />
+
+    **Step 2: Assign Users and Groups**
+
+    1. Go to **Manage** > **Users and groups**
+    2. Click **Add user/group**
+    3. Select the users or groups who should have access to Passionfruit via SSO
+    4. Click **Assign**
+
+    **Step 3: Test the Integration**
+
+    1. Use the **Test this application** option in Microsoft Entra ID to verify the SAML configuration
+    2. Test with a sample user account to ensure:
+       - Users can successfully sign in with their Microsoft credentials
+       - Multi-factor authentication (if enabled) works correctly
+       - User attributes are correctly passed to Passionfruit
+       - Access control and permissions are working as expected
+
+    **Step 4: Enable SSO**
+
+    1. Once testing is complete, ensure SSO is enabled for the application
+    2. Communicate the SSO status to your users
+    3. Users can now sign in to Passionfruit using their Microsoft credentials
+
+    <Info> The Passionfruit team will work closely with your IT team throughout this process. We'll provide all necessary configuration details and assist with testing.</Info>
+
+    #### User Experience
+
+    Once SSO is configured, users can authenticate using **either** SSO **or** password login, but not both:
+
+    - **Sign in with Microsoft (SSO)**: Users can click "Sign in with Microsoft" and authenticate using their Microsoft Entra ID credentials. This option respects all your organisation's security policies, including MFA requirements.
+    - **Sign in with password**: Users can continue using their Passionfruit password if SSO is not enabled for their account.
+
+    <Warning> Users must choose one authentication method. Once SSO is enabled for a user, they will use SSO for authentication and cannot use password login. Similarly, users who continue using password login will not have access to SSO until it is enabled for their account.</Warning>
+
+    SSO users benefit from your organisation's Microsoft Entra ID security policies, including:
+    - Multi-factor authentication requirements
+    - Conditional access rules
+    - Password policies
+    - Account lockout policies
+
+  </Tab>
+</Tabs>
+
+<Info> Need a different login provider? Contact `hello@passionfruit.earth` to discuss options.</Info>
+
+#### Need help?
+
+Contact our support team:
+
+- Email: `hello@passionfruit.earth`
+- We'll work with your IT team to configure Microsoft Entra ID and ensure users can seamlessly sign in with their Microsoft credentials
