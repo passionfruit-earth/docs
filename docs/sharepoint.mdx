@@ -48,14 +48,20 @@ This section explains how to add a new company tenant to the existing SharePoint
 
 Restrict the multi-tenant app registration to specific Entra tenants by adding the new company.
 
-<img src="/images/integrations/sharepoint-app-registration.png" className="w-full border-none h-auto my-0" alt="Azure Portal showing Microsoft Entra ID app registration for the SharePoint integration" />
-
 1. Open **Azure Portal** and go to **Microsoft Entra ID**.
+
+<img src="/images/integrations/sharepoint-azure-portal-menu.png" className="w-full border-none h-auto my-0" alt="Azure Portal side menu with Microsoft Entra ID option" />
+
 2. Go to **App registrations** and open the SharePoint integration app.
+
+<img src="/images/integrations/sharepoint-entra-manage-menu.png" className="w-full border-none h-auto my-0" alt="Microsoft Entra ID Manage menu with App registrations entry" />
+
+<img src="/images/integrations/sharepoint-app-registration.png" className="w-full border-none h-auto my-0" alt="App registrations list showing the SharePoint integration app" />
+
+3. Open **Authentication (Preview)** → **Supported accounts**.
 
 <img src="/images/integrations/sharepoint-authentication-preview.png" className="w-full border-none h-auto my-0" alt="App registration Authentication Preview showing Supported accounts section" />
 
-3. Open **Authentication (Preview)** → **Supported accounts**.
 4. Click **Manage allowed tenants**.
 5. In the dialog, add the new company tenant by **Tenant ID** or domain, then save.
 
