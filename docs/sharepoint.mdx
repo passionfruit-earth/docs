@@ -38,4 +38,90 @@ The SharePoint integration enables automatic evidence syncing from your SharePoi
 - Rich metadata used for discovery and compliance (for example: title, type, size, creator/owner, modified/created timestamps, and path).
 - File content for search and answer generation where supported (e.g., PDFs, Office documents, and images with text extraction where available).
 
+---
 
+#### Adding a new company tenant
+
+This section explains how to add a new company tenant to the existing SharePoint app registration and connect it to Passionfruit.
+
+##### Step 1: Allow the tenant in the app registration
+
+Restrict the multi-tenant app registration to specific Entra tenants by adding the new company.
+
+1. Open **Azure Portal** and go to **Microsoft Entra ID**.
+
+<img src="/images/integrations/sharepoint-azure-portal-menu.png" className="w-full border-none h-auto my-0" alt="Azure Portal side menu with Microsoft Entra ID option" />
+
+2. Go to **App registrations** and open the SharePoint integration app.
+
+<img src="/images/integrations/sharepoint-entra-manage-menu.png" className="w-full border-none h-auto my-0" alt="Microsoft Entra ID Manage menu with App registrations entry" />
+
+<img src="/images/integrations/sharepoint-app-registration.png" className="w-full border-none h-auto my-0" alt="App registrations list showing the SharePoint integration app" />
+
+3. Open **Authentication (Preview)** → **Supported accounts**.
+
+<img src="/images/integrations/sharepoint-authentication-preview.png" className="w-full border-none h-auto my-0" alt="App registration Authentication Preview showing Supported accounts section" />
+
+4. Click **Manage allowed tenants**.
+5. In the dialog, add the new company tenant by **Tenant ID** or domain, then save.
+
+<img src="/images/integrations/sharepoint-allowed-tenants.png" className="w-full border-none h-auto my-0" alt="Manage allowed tenants dialog with the option to add a tenant by ID or domain" />
+
+6. Confirm the new tenant appears under **Allowed tenants**.
+
+##### Step 2: Add integration config in the database
+
+Create an integration record for the new company with the following fields:
+
+| Field | Description |
+| --- | --- |
+| `tenantId` | Microsoft Entra tenant ID of the company whose SharePoint you want to access. Find it in **Azure Portal** → **Microsoft Entra ID** → **Overview** → **Tenant ID** (also shown as **Directory (tenant) ID**). |
+| `clientId` | Application (client) ID of the shared SharePoint app registration in Entra. |
+| `siteUrl` | Full SharePoint site URL that contains the target library/folder (e.g. `https://company.sharepoint.com/sites/Compliance`). |
+| `folderPath` | Folder path inside the site's default drive to sync (e.g. `Shared Documents/Policies`). |
+| `certThumbprint` | Thumbprint of the certificate configured on the app registration; used to build the JWT header (`x5t`) for certificate-based auth. |
+| `webhookUrl` | Graph subscription webhook URL — should point to a reachable API endpoint at `POST /api/v2/integrations/webhook`. |
+
+Example record:
+
+```sql
+INSERT INTO integrations (org_id, type, config, is_active)
+VALUES (
+  'org_newcompany_001',
+  'sharepoint',
+  '{
+    "tenantId": "11111111-2222-3333-4444-555555555555",
+    "clientId": "de2a8f6b-a0db-4375-abb7-1d7984c5c730",
+    "siteUrl": "https://newcompany.sharepoint.com/sites/compliance",
+    "folderPath": "Shared Documents/Policies",
+    "webhookUrl": "https://api.yourdomain.com/api/v2/integrations/webhook",
+    "certThumbprint": "5F7942004EA641FE9EE980227A39753ABAA33752"
+  }'::json,
+  true
+);
+```
+
+<Warning> Keep one active SharePoint integration per organisation. Deactivate any existing integration before creating a new one for the same org.</Warning>
+
+##### Step 3: Trigger initial sync
+
+After the config is saved, run the initial sync to populate the integration:
+
+- **Endpoint**: `POST /api/v2/integrations/imports`
+- **Auth**: Keycloak JWT (same as other v2 protected routes)
+- **Body**: `{}` (empty object)
+
+This will:
+
+1. List current documents in the configured SharePoint folder.
+2. Stage them in `integration_imports`.
+3. Create/renew the Graph subscription.
+4. Initialize and store the `deltaLink` for incremental sync.
+
+**Follow-up endpoints:**
+
+| Endpoint | Purpose |
+| --- | --- |
+| `GET /api/v2/integrations/imports` | List staged files |
+| `GET /api/v2/integrations/imports/:id` | Inspect a single staged row |
+| `POST /api/v2/integrations/imports/move` | Import staged rows into the evidences pipeline |
