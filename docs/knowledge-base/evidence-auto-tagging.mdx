@@ -1,16 +1,39 @@
 ---
-title: 'Auto tagging'
-description: 'Automatically detect type, source, and entities for new evidence'
+title: "Auto tagging suggestions"
+description: "Manual choices on upload are kept; Passionfruit adds suggestions for the rest"
 ---
 
-<div className="rounded-lg overflow-hidden border">
-  <img src="/images/evidence/EV-auto-tag-evidence-overview.png" className="w-full h-auto my-0" alt="Auto Tagging Demonstration" width="100%" />
+#### Overview
+
+Passionfruit uses the same pattern as elsewhere: **you can set properties yourself**, and we **add suggestions** for the rest. What you enter manually is **kept**. For fields you leave empty, we propose metadata after upload and can **apply suggestions automatically** when there is nothing to conflict with.
+
+#### Manual first
+
+During upload, assign properties before you finish (for example **Assign entity**, evidence type, or visibility on **Assign properties to all items**). Those values are stored and **not overwritten** later.
+
+1. Start an upload from `Evidence` and add files or links.
+2. Use **Assign properties to all items** (or per-file options where available) to set entity, type, and other fields you already know.
+3. Complete import. Anything you set here stays as you chose.
+
+<div className="bg-[#FDFDFD] rounded-lg flex items-center justify-center overflow-hidden outline-[0.5px] outline outline-black/10">
+  <img
+    src="/images/changelog/REL27-Assign%20properties%20on%20upload.png"
+    alt="Assign entity and other properties during upload"
+    className="w-full h-auto my-0"
+  />
 </div>
 
-Auto‑tagging reads new uploads and suggests rich metadata automatically—so you don’t have to maintain it by hand and your knowledge stays organised. We detect type, source, and related entities, and propose other helpful attributes for review.
+#### Suggestions
 
-- Evidence is automatically tagged with type, source, and detected entities
-- Tags improve search and filtering; you can edit or add your own
-- See the [changelog](/changelog) for recent accuracy and coverage improvements
+After processing, Passionfruit runs **auto-tagging**: we suggest type, source, related entities, and more. **Empty** fields get values from these suggestions; we apply them automatically when there is no manual value to preserve. You can still review and change suggested metadata on the evidence detail view.
 
+<div className="rounded-lg overflow-hidden border">
+  <img
+    src="/images/evidence/EV-auto-tag-evidence-overview.png"
+    className="w-full h-auto my-0"
+    alt="Suggested metadata on the evidence detail panel"
+    width="100%"
+  />
+</div>
 
+See the [changelog](/changelog) for recent accuracy and coverage improvements.

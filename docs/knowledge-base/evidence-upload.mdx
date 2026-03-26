@@ -4,49 +4,36 @@ description: 'Upload files and links to add new evidence'
 ---
 
 #### Overview
-Upload your source files and links to keep citations close to your work. Drop files and Passionfruit processes the content, extracts key details, auto‑tags, and stores the originals so evidence is searchable and ready to review, approve, and cite across the App (web) and the Extension.
+Upload source files and links to keep citations close to your work. During upload, Passionfruit checks for duplicates before adding files and lets you assign key properties like entity and tags. After upload, content is processed and suggested metadata is available for review so evidence is searchable, organised, and ready to cite.
 
-<Tabs>
-    <Tab title="App" icon="browser">
-    1. Go to `Evidence`
-    2. Click `Upload` (top right)
-    3. Drag and drop files or paste links
-    4. We process content, auto‑tag, and upload; items are ready when the auto‑tagging status disappears
-
-    
-  </Tab>
-
-  <Tab title="Extension" icon="mobile">
-    Evidence can be uploaded from the extension in two ways:
-
-    #### Option 1: Upload evidence from Chat
-    Add new files files without leaving your questionnaire filling workflow:
-    1. Open `Chat` in the extension
-    2. Click `+` (Upload)
-    3. Select or drag and drop files
-
-#### Option 2: Upload evidence from evidence list
-    Add new files without leaving your questionnaire filling workflow:
-
-
-<div className="bg-[#FDFDFD] rounded-lg overflow-hidden  outline-1 aspect-video">
-  <video
-    autoPlay
-    muted
-    loop
-    playsInline
-    className="w-full h-full"
-    src="/videos/evidence/evidence-upload-file.mp4"
-  ></video>
+<div className="bg-[#FDFDFD] rounded-lg flex items-center justify-center overflow-hidden outline-[0.5px] outline outline-black/10">
+  <img
+    src="/images/changelog/REL27-Assign%20properties%20on%20upload.png"
+    alt="Assign properties on upload"
+    className="w-full h-auto my-0"
+  />
 </div>
-   1. Go to `Home` in the extension
-    2. Click `Evidence`
-    3. Click `+` (Upload)
-    4. Drag and drop files or paste links
 
+#### Duplicate detection on upload
 
+If a file already exists in your knowledge base, Passionfruit flags it during upload so you can avoid adding duplicates.
 
-  </Tab>
-</Tabs>
+<div className="bg-[#FDFDFD] rounded-lg flex items-center justify-center overflow-hidden outline-[0.5px] outline outline-black/10">
+  <img
+    src="/images/changelog/REL27-evidence%20duplication.png"
+    alt="Duplicate evidence detection during upload"
+    className="w-full h-auto my-0"
+  />
+</div>
+
+#### Steps (Desktop and Mobile)
+
+The workflow is the same on Desktop and Mobile; only the layout differs.
+
+1. Open `Evidence` and select `Upload` (click on Desktop, tap on Mobile)
+2. Drag and drop files or select files and paste links
+3. If a file already exists, Passionfruit flags it before it is added
+4. Assign key properties during upload (for example: `Entity` and important `Tags`)
+5. Finish upload and review suggested metadata once processing completes
 
 

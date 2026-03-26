@@ -1,12 +1,16 @@
 ---
-title: 'SharePoint'
-description: 'Request a managed SharePoint integration; we set it up with Microsoft Entra ID'
+title: "SharePoint"
+description: "Request a managed SharePoint integration; we set it up with Microsoft Entra ID"
 ---
 
 #### Overview
+
 Connect Passionfruit to SharePoint Online to discover and reuse the right evidence while filling questionnaires. This integration is offered as a managed setup: you request access, and we configure everything with your team using Microsoft Entra ID.
 
-<Info> Available on request. Email `hello@passionfruit.earth` to get started.</Info>
+<Info>
+  {" "}
+  Available on request. Email `hello@passionfruit.earth` to get started.
+</Info>
 
 #### Authentication and Security
 
@@ -17,6 +21,7 @@ The SharePoint integration leverages Microsoft Entra ID for secure authenticatio
 - **Secure data access**: All SharePoint access is authenticated through Microsoft Entra ID, ensuring only authorized users can sync and access evidence
 
 #### Purpose
+
 Syncing evidence files with your Knowledge Base keeps your source documents authoritative while making them instantly reusable across Passionfruit.
 
 - **Single source of truth**: Files stay in SharePoint, while Passionfruit indexes them so your team can search, reference, and reuse the latest versions during questionnaires.
@@ -34,6 +39,7 @@ The SharePoint integration enables automatic evidence syncing from your SharePoi
 - **Compliance tracking**: Maintain visibility into evidence sources, ownership, and modification dates directly from SharePoint metadata
 
 #### What is synced
+
 - Selected sites, libraries, or folders and their files.
 - Rich metadata used for discovery and compliance (for example: title, type, size, creator/owner, modified/created timestamps, and path).
 - File content for search and answer generation where supported (e.g., PDFs, Office documents, and images with text extraction where available).
@@ -50,78 +56,64 @@ Restrict the multi-tenant app registration to specific Entra tenants by adding t
 
 1. Open **Azure Portal** and go to **Microsoft Entra ID**.
 
-<img src="/images/integrations/sharepoint-azure-portal-menu.png" className="w-full border-none h-auto my-0" alt="Azure Portal side menu with Microsoft Entra ID option" />
+<img
+  src="/images/integrations/sharepoint-azure-portal-menu.png"
+  className="w-full border-none h-auto my-0"
+  alt="Azure Portal side menu with Microsoft Entra ID option"
+/>
 
 2. Go to **App registrations** and open the SharePoint integration app.
 
-<img src="/images/integrations/sharepoint-entra-manage-menu.png" className="w-full border-none h-auto my-0" alt="Microsoft Entra ID Manage menu with App registrations entry" />
+<img
+  src="/images/integrations/sharepoint-entra-manage-menu.png"
+  className="w-full border-none h-auto my-0"
+  alt="Microsoft Entra ID Manage menu with App registrations entry"
+/>
 
-<img src="/images/integrations/sharepoint-app-registration.png" className="w-full border-none h-auto my-0" alt="App registrations list showing the SharePoint integration app" />
+<img
+  src="/images/integrations/sharepoint-app-registration.png"
+  className="w-full border-none h-auto my-0"
+  alt="App registrations list showing the SharePoint integration app"
+/>
 
 3. Open **Authentication (Preview)** → **Supported accounts**.
 
-<img src="/images/integrations/sharepoint-authentication-preview.png" className="w-full border-none h-auto my-0" alt="App registration Authentication Preview showing Supported accounts section" />
+<img
+  src="/images/integrations/sharepoint-authentication-preview.png"
+  className="w-full border-none h-auto my-0"
+  alt="App registration Authentication Preview showing Supported accounts section"
+/>
 
 4. Click **Manage allowed tenants**.
 5. In the dialog, add the new company tenant by **Tenant ID** or domain, then save.
 
-<img src="/images/integrations/sharepoint-allowed-tenants.png" className="w-full border-none h-auto my-0" alt="Manage allowed tenants dialog with the option to add a tenant by ID or domain" />
+<img
+  src="/images/integrations/sharepoint-allowed-tenants.png"
+  className="w-full border-none h-auto my-0"
+  alt="Manage allowed tenants dialog with the option to add a tenant by ID or domain"
+/>
 
 6. Confirm the new tenant appears under **Allowed tenants**.
 
-##### Step 2: Add integration config in the database
+##### Step 2: Share details with Passionfruit
 
-Create an integration record for the new company with the following fields:
+After your tenant is allowed on the app registration, send the Passionfruit team the information below so we can finish setup on our side. You do not need to run database scripts or call APIs—those steps are handled internally.
 
-| Field | Description |
-| --- | --- |
-| `tenantId` | Microsoft Entra tenant ID of the company whose SharePoint you want to access. Find it in **Azure Portal** → **Microsoft Entra ID** → **Overview** → **Tenant ID** (also shown as **Directory (tenant) ID**). |
-| `clientId` | Application (client) ID of the shared SharePoint app registration in Entra. |
-| `siteUrl` | Full SharePoint site URL that contains the target library/folder (e.g. `https://company.sharepoint.com/sites/Compliance`). |
-| `folderPath` | Folder path inside the site's default drive to sync (e.g. `Shared Documents/Policies`). |
-| `certThumbprint` | Thumbprint of the certificate configured on the app registration; used to build the JWT header (`x5t`) for certificate-based auth. |
-| `webhookUrl` | Graph subscription webhook URL — should point to a reachable API endpoint at `POST /api/v2/integrations/webhook`. |
+| What we need               | Where to find it                                                                                                                         |
+| -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| **Tenant ID**              | **Azure Portal** → **Microsoft Entra ID** → **Overview** → **Tenant ID** (also called **Directory (tenant) ID**).                        |
+| **SharePoint site URL**    | The full URL of the site that contains the library you want to sync (for example `https://yourcompany.sharepoint.com/sites/Compliance`). |
+| **Folder or library path** | The path to the folder or library inside that site (for example `Shared Documents/Policies` or the library name your team uses).         |
 
-Example record:
+If we already shared an **Application (client) ID** with you for this integration, include it when you write in so we can match your organisation to the correct app registration.
 
-```sql
-INSERT INTO integrations (org_id, type, config, is_active)
-VALUES (
-  'org_newcompany_001',
-  'sharepoint',
-  '{
-    "tenantId": "11111111-2222-3333-4444-555555555555",
-    "clientId": "de2a8f6b-a0db-4375-abb7-1d7984c5c730",
-    "siteUrl": "https://newcompany.sharepoint.com/sites/compliance",
-    "folderPath": "Shared Documents/Policies",
-    "webhookUrl": "https://api.yourdomain.com/api/v2/integrations/webhook",
-    "certThumbprint": "5F7942004EA641FE9EE980227A39753ABAA33752"
-  }'::json,
-  true
-);
-```
+<Warning>
+  {" "}
+  Use one SharePoint connection per organisation in Passionfruit. If you change
+  sites or need to replace an integration, coordinate with us first so we can
+  update the configuration cleanly.
+</Warning>
 
-<Warning> Keep one active SharePoint integration per organisation. Deactivate any existing integration before creating a new one for the same org.</Warning>
+##### Step 3: We complete setup and sync
 
-##### Step 3: Trigger initial sync
-
-After the config is saved, run the initial sync to populate the integration:
-
-- **Endpoint**: `POST /api/v2/integrations/imports`
-- **Auth**: Keycloak JWT (same as other v2 protected routes)
-- **Body**: `{}` (empty object)
-
-This will:
-
-1. List current documents in the configured SharePoint folder.
-2. Stage them in `integration_imports`.
-3. Create/renew the Graph subscription.
-4. Initialize and store the `deltaLink` for incremental sync.
-
-**Follow-up endpoints:**
-
-| Endpoint | Purpose |
-| --- | --- |
-| `GET /api/v2/integrations/imports` | List staged files |
-| `GET /api/v2/integrations/imports/:id` | Inspect a single staged row |
-| `POST /api/v2/integrations/imports/move` | Import staged rows into the evidences pipeline |
+Passionfruit configures the integration, connects to your SharePoint scope, and runs the initial sync. We’ll let you know when evidence from SharePoint is available in your Knowledge Base and when ongoing sync is active.

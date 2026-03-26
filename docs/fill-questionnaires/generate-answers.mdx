@@ -1,38 +1,62 @@
 ---
-title: 'Generate answers'
-description: 'Finds the best content and drafts a cited response'
-status: 'shipped'
+title: "Generate answers"
+description: "Search first, then reuse an approved Answer Library entry or generate a new answer from answers and evidence"
+status: "shipped"
 ---
 
 #### Overview
-We find the best content from your workspace and draft a concise response with citations you can verify.
+
+We **search** your knowledge using your question, **entities** (which company or subsidiary), and your [search context](/docs/fill-questionnaires/search-context). Then we check whether you already have a **reusable answer**.
+
+The **Answer Library** holds **approved answers** your team saved from past questionnaires: answers you generated before and chose to keep. When search finds a strong match, we can return that reusable answer.
+
+If there isn’t one, we **generate a new answer** by drawing on what’s in your workspace: information from **answers** (including what’s tied to entities) and from **Evidence** (your documents and files). The new answer is grounded in that material and includes citations you can verify.
+
+<div className="bg-[#FDFDFD] rounded-lg flex items-center justify-center overflow-hidden outline-[0.5px] outline outline-black/10">
+  <img
+    src="/images/changelog/REL27-answer-library-match.png"
+    alt="Example: similar answer from the Answer Library in chat, with confidence and Review"
+    className="w-full h-auto my-0"
+  />
+</div>
 
 ## How it works
+
 <Steps>
-  <Step title="Understand your question and context">
-    We read the question text and capture context (entity, framework, tags). We use any selected scope to constrain sources.
+  <Step title="Search with your context">
+    We run a search over your knowledge using the question, **entities**,
+    questionnaire, framework, and tags. Your [search
+    context](/docs/fill-questionnaires/search-context) limits which evidence and
+    Answer Library entries we consider.
   </Step>
-  <Step title="Check the Answer Library first">
-    If a matching approved answer exists, we use it as the base. If not found, we continue to evidence.
+  <Step title="Look for a reusable Answer Library answer">
+    We check whether an **approved, reusable answer** already exists in your
+    **Answer Library** (something your team saved from an earlier
+    questionnaire). If search finds a good match, we surface that answer
+    (including colleague context where it helps).
   </Step>
-  <Step title="Search your Evidence base">
-    We retrieve and rank the most relevant documents and entities. We prioritize approved and recent content.
-  </Step>
-  <Step title="Draft a tailored answer">
-    We phrase the answer to fit the questionnaire’s wording and field. We include citations so you can verify and drill into sources.
+  <Step title="Otherwise generate a new answer">
+    If there isn’t a reusable library answer, we **generate a new one**: we
+    search **approved answer content and entity-related information** already in
+    your workspace, together with your **Evidence**, and draft a response from
+    that material. We add **citations** and you can use **Review** to inspect
+    sources.
   </Step>
 </Steps>
 
 ## Sources
-1. Approved answers in your Answer Library
-2. Evidence and related entities
+
+1. **Answer Library:** Approved answers you saved from past questionnaires; we return one when search finds a **reusable** match.
+2. **Answer content and entities:** When we **generate** a new answer, we also draw on stored answer text and entity-linked detail (not only files).
+3. **Evidence:** Documents and files we search and cite when building or supporting an answer.
+4. **Scope:** Entities and search context limit what we search so answers stay tied to the right company and sources.
 
 ## Citations
+
 - Every suggested answer includes citations and deep links
 - Open sources to check details before using the answer
 
 ## Limits
+
 - May ask for clarification if context is missing
 - Can be uncertain about very new or unapproved content
-
-
