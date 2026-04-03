@@ -12,7 +12,7 @@
     "dark": true,
     "light": true
   },
-  
+
   "background": {
     "color": {
       "dark": "#0C0C0B",
@@ -36,6 +36,12 @@
     "description": "Your hub for building, integrating, and staying up to date with Passionfruit."
   },
   "css": ["/docs/custom.css"],
+  "redirects": [
+    {
+      "source": "/docs/fill-questionnaires/search-context",
+      "destination": "/docs/fill-questionnaires/search-configuration"
+    }
+  ],
   "navigation": {
     "tabs": [
       {
@@ -45,7 +51,12 @@
           {
             "group": "Getting Started",
             "icon": "rocket",
-            "pages": ["docs/installation/start-guide", "docs/installation/concepts", "docs/installation/apps",  "docs/installation/install"]
+            "pages": [
+              "docs/installation/start-guide",
+              "docs/installation/concepts",
+              "docs/installation/apps",
+              "docs/installation/install"
+            ]
           },
           {
             "group": "Workspace",
@@ -57,48 +68,46 @@
               "docs/installation/sso"
             ]
           },
-      
-          
+
           {
             "group": "Knowledge Base",
             "icon": "folder-open",
             "collapsed": true,
             "pages": [
-              
-               {
-            "group": "Evidence",
-            "collapsed": true,
-              "pages": [
-              "docs/knowledge-base/evidence-upload",
-              "docs/knowledge-base/evidence-organize",
-              "docs/knowledge-base/evidence-auto-tagging",
-              "docs/knowledge-base/delete-evidence",
-              "docs/knowledge-base/evidence-select"
-            ]
-          },
               {
-            "group": "Entities",
-            "collapsed": true,
-            "pages": [
-              "docs/knowledge-base/entities-create",
-              "docs/knowledge-base/entities-edit",
-              "docs/knowledge-base/entities-delete",
-              "docs/knowledge-base/entities-select"
-            ]
-          },
+                "group": "Evidence",
+                "collapsed": true,
+                "pages": [
+                  "docs/knowledge-base/evidence-upload",
+                  "docs/knowledge-base/evidence-organize",
+                  "docs/knowledge-base/evidence-auto-tagging",
+                  "docs/knowledge-base/delete-evidence",
+                  "docs/knowledge-base/evidence-select"
+                ]
+              },
               {
-            "group": "Answer Library",
-            "collapsed": true,
-            "pages": [
-              "docs/knowledge-base/answer-library-create",
-              "docs/knowledge-base/answer-library-edit",
-              "docs/knowledge-base/answer-library-delete",
-              "docs/knowledge-base/answer-library-select"
-            ]
-          }
+                "group": "Entities",
+                "collapsed": true,
+                "pages": [
+                  "docs/knowledge-base/entities-create",
+                  "docs/knowledge-base/entities-edit",
+                  "docs/knowledge-base/entities-delete",
+                  "docs/knowledge-base/entities-select"
+                ]
+              },
+              {
+                "group": "Answer Library",
+                "collapsed": true,
+                "pages": [
+                  "docs/knowledge-base/answer-library-create",
+                  "docs/knowledge-base/answer-library-edit",
+                  "docs/knowledge-base/answer-library-delete",
+                  "docs/knowledge-base/answer-library-select"
+                ]
+              }
             ]
           },
-          
+
           {
             "group": "Fill questionnaires",
             "icon": "clipboard-list",
@@ -106,37 +115,30 @@
             "pages": [
               "docs/fill-questionnaires/start-questionnaire",
               "docs/fill-questionnaires/ask-question",
-              "docs/fill-questionnaires/search-context",
+              "docs/fill-questionnaires/search-configuration",
               "docs/fill-questionnaires/generate-answers",
               "docs/fill-questionnaires/review-answers",
               "docs/fill-questionnaires/place-answers",
               "docs/fill-questionnaires/save-to-answer-library",
               "docs/fill-questionnaires/manage-chats",
               {
-            "group": "Auto-fill",
-            "pages": [
-              "docs/fill-questionnaires/excel-functions"
-              
-            ]
-          }
+                "group": "Auto-fill",
+                "pages": ["docs/fill-questionnaires/excel-functions"]
+              }
             ]
           },
-          
-         
+
           {
             "group": "Integrations",
             "icon": "plug",
             "collapsed": true,
             "pages": ["docs/sharepoint"]
-          }
-        ,
+          },
           {
             "group": "Analytics",
             "icon": "chart-line-up",
             "collapsed": true,
-            "pages": [
-              "docs/analytics/insights"
-            ]
+            "pages": ["docs/analytics/insights"]
           }
         ],
         "global": {
@@ -180,9 +182,11 @@
   },
   "integrations": {
     "posthog": {
-        "apiKey": "phc_WlP73lAq2O6cnyR3IHwu9D2M3c1kQZeqPcldSxV8sAr","apiHost": "https://eu.posthog.com"
+      "apiKey": "phc_WlP73lAq2O6cnyR3IHwu9D2M3c1kQZeqPcldSxV8sAr",
+      "apiHost": "https://eu.posthog.com",
+      "sessionRecording": true
     }
-},
+  },
   "footer": {
     "socials": {
       "x": "https://x.com/passionfruit",
