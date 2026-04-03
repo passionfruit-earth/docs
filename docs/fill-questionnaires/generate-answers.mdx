@@ -1,62 +1,41 @@
 ---
 title: "Generate answers"
-description: "Search first, then reuse an approved Answer Library entry or generate a new answer from answers and evidence"
+description: "Where suggested answers come from: your library, your entities, and your evidence—and how we pick between reusing and drafting something new."
 status: "shipped"
 ---
 
-#### Overview
+When you ask something in Chat, we either **reuse** an answer your team already approved or **write a new one** from the material in your workspace. Here is what that material is; below that is **how we use it**, then **how you steer it**.
 
-We **search** your knowledge using your question, **entities** (which company or subsidiary), and your [search configuration](/docs/fill-questionnaires/search-configuration). Then we check whether you already have a **reusable answer**.
+## Answer Library
 
-The **Answer Library** holds **approved answers** your team saved from past questionnaires: answers you generated before and chose to keep. When search finds a strong match, we can return that reusable answer.
-
-If there isn’t one, we **generate a new answer** by drawing on what’s in your workspace: information from **answers** (including what’s tied to entities) and from **Evidence** (your documents and files). The new answer is grounded in that material and includes citations you can verify.
+Answers you (or a teammate) saved from earlier questionnaires—**approved** and ready to use again. When the question lines up, we can suggest **the same wording** so you stay consistent with what you already committed to. In Chat this may show up as a **Similar answer** you can copy or open in **Review**.
 
 <div className="bg-[#FDFDFD] rounded-lg flex items-center justify-center overflow-hidden outline-[0.5px] outline outline-black/10">
   <img
     src="/images/changelog/REL27-answer-library-match.png"
-    alt="Example: similar answer from the Answer Library in chat, with confidence and Review"
+    alt="Similar answer from the Answer Library in chat, with Copy and Review"
     className="w-full h-auto my-0"
   />
 </div>
 
-## How it works
+## Entities
 
-<Steps>
-  <Step title="Search with your context">
-    We run a search over your knowledge using the question, **entities**,
-    questionnaire, framework, and tags.     Your [search
-    configuration](/docs/fill-questionnaires/search-configuration) limits which evidence and
-    Answer Library entries we consider.
-  </Step>
-  <Step title="Look for a reusable Answer Library answer">
-    We check whether an **approved, reusable answer** already exists in your
-    **Answer Library** (something your team saved from an earlier
-    questionnaire). If search finds a good match, we surface that answer
-    (including colleague context where it helps).
-  </Step>
-  <Step title="Otherwise generate a new answer">
-    If there isn’t a reusable library answer, we **generate a new one**: we
-    search **approved answer content and entity-related information** already in
-    your workspace, together with your **Evidence**, and draft a response from
-    that material. We add **citations** and you can use **Review** to inspect
-    sources.
-  </Step>
-</Steps>
+Structured records for a **company, site, or subsidiary**—and the answer data tied to them. That is how we know *who* the answer is for and we keep search from mixing up different parts of the business.
 
-## Sources
+## Evidence
 
-1. **Answer Library:** Approved answers you saved from past questionnaires; we return one when search finds a **reusable** match.
-2. **Answer content and entities:** When we **generate** a new answer, we also draw on stored answer text and entity-linked detail (not only files).
-3. **Evidence:** Documents and files we search and cite when building or supporting an answer.
-4. **Scope:** Entities and search configuration limit what we search so answers stay tied to the right company and sources.
+**Unstructured** files: PDFs, Word, scans, and anything else you upload. You **tag** them so you can filter and find the right document when things pile up. We read these when we need to **draft** a fresh answer and we **cite** what we used.
 
-## Citations
+## How we use it
 
-- Every suggested answer includes citations and deep links
-- Open sources to check details before using the answer
+1. **Search** — We look across the sources above using your question, your questionnaire, and tags—within the limits you set (see below).
+2. **Library first** — If we find a strong **Answer Library** match, we suggest that reusable answer (sometimes with a colleague’s note so you know why it fits).
+3. **Otherwise we draft** — If there is no good library hit, we **generate** a new answer from **Evidence** (e.g. PDFs), **entity-linked** information, and other approved answers in your workspace. You get **citations** so you can open **Review** and check before you use it.
 
-## Limits
+## Your setup
 
-- May ask for clarification if context is missing
-- Can be uncertain about very new or unapproved content
+Here you **select context** for the chat: **select sources** (which types we look at—entity, Answer library, evidence), **customize the setup** (which company or site, and optionally specific files), and keep everything scoped to the right place. You can change it anytime during a session.
+
+All of that happens in **[search configuration](/docs/fill-questionnaires/search-configuration)**—the panel where you pick entities first, then source toggles, then manual file selection if you need it.
+
+Suggested answers always include **citations**; open them when you want to double-check. If something important is missing from your workspace, we may ask for clarification or be less certain about brand-new or unapproved content.

@@ -40,6 +40,10 @@
     {
       "source": "/docs/fill-questionnaires/search-context",
       "destination": "/docs/fill-questionnaires/search-configuration"
+    },
+    {
+      "source": "/docs/fill-questionnaires/select-search-context",
+      "destination": "/docs/fill-questionnaires/search-configuration"
     }
   ],
   "navigation": {
@@ -121,10 +125,7 @@
               "docs/fill-questionnaires/place-answers",
               "docs/fill-questionnaires/save-to-answer-library",
               "docs/fill-questionnaires/manage-chats",
-              {
-                "group": "Auto-fill",
-                "pages": ["docs/fill-questionnaires/excel-functions"]
-              }
+              "docs/fill-questionnaires/excel-functions"
             ]
           },
 
