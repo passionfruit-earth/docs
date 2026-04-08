@@ -1,0 +1,34 @@
+---
+title: "Create tables for questionnaires"
+description: "Use automatic table generation when available, and a strict manual flow when it is not."
+status: "shipped"
+---
+
+Questionnaires often require structured tables such as ingredient lists, allergen overviews, or component breakdowns. Passionfruit supports both automatic and manual table workflows.
+
+## When tables are generated automatically
+
+For supported table types (including common allergen and ingredient formats), Passionfruit detects the structure and generates the table automatically.
+
+If auto-generation does not appear or produces the wrong structure, contact [support](mailto:hello@passionfruit.earth) and include the questionnaire section.
+
+## Manual table workflow
+
+Use this flow for all unsupported table layouts.
+
+1. Select all table questions and headers  
+   Include every column header and field (for example: `Ingredient | CAS number | Allergen | % range`).
+2. Run the questions in Chat  
+   Let Passionfruit return answers per field.
+3. Review field-by-field output  
+   Fix gaps or incorrect values before formatting.
+4. Reformat into the original table  
+   Prompt: `Please put these answers back into the original table structure.`
+5. Paste into the questionnaire  
+   Use [Place answers](/docs/fill-questionnaires/place-answers) for insertion options.
+
+## Quality checks before you finalize
+
+- **Allergen tables:** ensure allergen declarations are uploaded as evidence first
+- **Ingredient tables:** upload product specifications for best coverage
+- **Empty fields:** usually means missing source data; upload the document and run again
