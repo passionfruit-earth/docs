@@ -38,9 +38,23 @@ status: "shipped"
 In the **same chat**, ask again in plain English to reshape the last answer—citations stay tied to what we used.
 
 Common follow-ups:
-- **Table formatting**: ask to return the output as a table. For full table workflows, see [Create tables for questionnaires](/docs/fill-questionnaires/create-tables).
+- **Table formatting**: ask to return the output as a table (workflow below).
 - **Language/tone**: request another language or a simpler/formal tone.
 - **Combine/shorten**: merge prior replies or make the answer concise.
+
+## Create tables in chat
+
+For common ingredient and allergen formats, Passionfruit can detect structure and generate table output automatically.
+
+When auto-generation does not work, use this manual flow:
+
+1. Select all table questions and headers (for example: `Ingredient | CAS number | Allergen | % range`)
+2. Run the questions in Chat
+3. Review field-by-field output and fix gaps
+4. Prompt: `Please put these answers back into the original table structure.`
+5. Copy and paste into your questionnaire
+
+If a field is empty, the source data is usually missing from your knowledge base. Upload the relevant evidence and run again.
 
 ## Auto‑fill
 

@@ -106,9 +106,7 @@
                   "docs/knowledge-base/answer-library-create",
                   "docs/knowledge-base/answer-library-edit",
                   "docs/knowledge-base/answer-library-delete",
-                  "docs/knowledge-base/answer-library-select",
-                  "docs/knowledge-base/answer-library-monthly-review",
-                  "docs/knowledge-base/store-certifications"
+                  "docs/knowledge-base/answer-library-select"
                 ]
               }
             ]
@@ -126,7 +124,6 @@
               "docs/fill-questionnaires/review-answers",
               "docs/fill-questionnaires/place-answers",
               "docs/fill-questionnaires/save-to-answer-library",
-              "docs/fill-questionnaires/create-tables",
               "docs/fill-questionnaires/manage-chats",
               "docs/fill-questionnaires/excel-functions"
             ]
