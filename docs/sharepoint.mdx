@@ -1,48 +1,54 @@
 ---
 title: "SharePoint"
-description: "Request a managed SharePoint integration; we set it up with Microsoft Entra ID"
+description: "Integrate with your single source of truth"
 ---
 
 #### Overview
 
-Connect Passionfruit to SharePoint Online to discover and reuse the right evidence while filling questionnaires. This integration is offered as a managed setup: you request access, and we configure everything with your team using Microsoft Entra ID.
+SharePoint is your starting point for integrating Passionfruit with where your documents already live. Connect your SharePoint and your policies, reports, certifications, and other documents are automatically pulled into your Knowledge Base. No downloading, re-uploading, or guessing whether you have the latest version.
+
+Provide access to a folder in SharePoint, and we'll keep it in sync. Currently, the integration supports **PDF** and **Word (.docx)** files.
 
 <Info>
-  {" "}
-  Available on request. Email `hello@passionfruit.earth` to get started.
+  The SharePoint integration is available on request. Email
+  `hello@passionfruit.earth` to get started.
 </Info>
 
-#### Authentication and Security
+<CardGroup cols={2}>
+  <Card title="Sync evidence" href="/docs/knowledge-base/evidence-sync">
+    Review, assign, and import files from connected sources into your Knowledge
+    Base.
+  </Card>
+  <Card title="Version evidence" href="/docs/knowledge-base/evidence-versions">
+    Track document changes over time and keep approved answers up to date.
+  </Card>
+</CardGroup>
 
-The SharePoint integration leverages Microsoft Entra ID for secure authentication and access control. This ensures:
+#### Managing integrations
 
-- **Seamless SSO**: If your organisation has configured [Single Sign-On (SSO)](/docs/installation/sso), users can access SharePoint-synced evidence using the same credentials
-- **Enterprise security**: Benefit from your existing Microsoft Entra ID security policies, including multi-factor authentication and conditional access rules
-- **Secure data access**: All SharePoint access is authenticated through Microsoft Entra ID, ensuring only authorized users can sync and access evidence
+Once the integration is set up, you can manage it from **Settings → Integrations**. Here you see which integrations are active, when they last synced, and whether there are any issues. You can also request new integrations from this page.
 
-#### Purpose
-
-Syncing evidence files with your Knowledge Base keeps your source documents authoritative while making them instantly reusable across Passionfruit.
-
-- **Single source of truth**: Files stay in SharePoint, while Passionfruit indexes them so your team can search, reference, and reuse the latest versions during questionnaires.
-- **Always up to date**: Changes at the source are reflected automatically, removing manual re-uploads and stale copies.
-- **Governance and analytics**: Centralized visibility for expiry tracking, approvals, ownership, and usage insights.
-- **Speed and consistency**: Reuse approved evidence and answers, reducing duplicate work and ensuring consistent responses.
-
-#### Evidence Syncing
-
-The SharePoint integration enables automatic evidence syncing from your SharePoint sites to your Passionfruit Knowledge Base. This allows you to:
-
-- **Select specific sources**: Choose which SharePoint sites, libraries, or folders should be synced with your Knowledge Base
-- **Automatic updates**: Evidence files are automatically indexed and updated when changes occur in SharePoint
-- **Search and discovery**: Synced evidence becomes searchable within Passionfruit, making it easy to find and reference during questionnaire filling
-- **Compliance tracking**: Maintain visibility into evidence sources, ownership, and modification dates directly from SharePoint metadata
+<div className="bg-[#FDFDFD] rounded-lg flex items-center justify-center overflow-hidden outline-[0.5px] outline outline-black/10">
+  <img
+    src="/images/integrations/sharepoint-integrations-settings.png"
+    alt="Settings page showing active SharePoint integration and sync status"
+    className="w-full h-auto my-0"
+  />
+</div>
 
 #### What is synced
 
-- Selected sites, libraries, or folders and their files.
-- Rich metadata used for discovery and compliance (for example: title, type, size, creator/owner, modified/created timestamps, and path).
-- File content for search and answer generation where supported (e.g., PDFs, Office documents, and images with text extraction where available).
+- The files inside the SharePoint folder you point us to (PDFs and Word documents)
+- Metadata used for discovery and compliance: title, type, size, creator, modified and created dates, and file path
+- File content is processed for search and answer generation
+
+#### Authentication and security
+
+The SharePoint integration uses Microsoft Entra ID for authentication and access control.
+
+- **Seamless SSO**: If your organisation has configured [Single Sign-On (SSO)](/docs/installation/sso), users access SharePoint evidence with the same credentials
+- **Enterprise security**: Your existing Microsoft Entra ID policies apply, including multi-factor authentication and conditional access
+- **Secure data access**: All SharePoint access is authenticated through Microsoft Entra ID, so only authorised users can import and view evidence
 
 ---
 
@@ -97,7 +103,7 @@ Restrict the multi-tenant app registration to specific Entra tenants by adding t
 
 ##### Step 2: Share details with Passionfruit
 
-After your tenant is allowed on the app registration, send the Passionfruit team the information below so we can finish setup on our side. You do not need to run database scripts or call APIs—those steps are handled internally.
+After your tenant is allowed on the app registration, send the Passionfruit team the information below so we can finish setup on our side. You do not need to run database scripts or call APIs. Those steps are handled internally.
 
 | What we need               | Where to find it                                                                                                                         |
 | -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
@@ -108,7 +114,6 @@ After your tenant is allowed on the app registration, send the Passionfruit team
 If we already shared an **Application (client) ID** with you for this integration, include it when you write in so we can match your organisation to the correct app registration.
 
 <Warning>
-  {" "}
   Use one SharePoint connection per organisation in Passionfruit. If you change
   sites or need to replace an integration, coordinate with us first so we can
   update the configuration cleanly.
@@ -116,4 +121,4 @@ If we already shared an **Application (client) ID** with you for this integratio
 
 ##### Step 3: We complete setup and sync
 
-Passionfruit configures the integration, connects to your SharePoint scope, and runs the initial sync. We’ll let you know when evidence from SharePoint is available in your Knowledge Base and when ongoing sync is active.
+Passionfruit configures the integration, connects to your SharePoint scope, and runs the initial sync. We'll let you know when evidence from SharePoint is available in your Knowledge Base and when ongoing sync is active.

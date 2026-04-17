@@ -83,6 +83,8 @@
                 "collapsed": true,
                 "pages": [
                   "docs/knowledge-base/evidence-upload",
+                  "docs/knowledge-base/evidence-sync",
+                  "docs/knowledge-base/evidence-versions",
                   "docs/knowledge-base/evidence-organize",
                   "docs/knowledge-base/evidence-auto-tagging",
                   "docs/knowledge-base/delete-evidence",
