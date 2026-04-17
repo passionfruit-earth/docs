@@ -21,7 +21,7 @@ With our new SharePoint integration, your policies, reports, and other documents
 
 Connect SharePoint to Passionfruit and your documents flow into your Knowledge Base automatically. Your team works from the files you already maintain, without any manual steps in between.
 
-→ [Read more about the SharePoint integration](https://docs.passionfruit.earth/docs/sharepoint)
+→ [Read more about syncing evidence](https://docs.passionfruit.earth/docs/knowledge-base/evidence-sync)
 
 ## Keep a history of document changes
 
