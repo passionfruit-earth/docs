@@ -46,7 +46,7 @@ Special integrations are built around three types of source data: documents, pro
 
 A strong setup usually has all three. Documents provide the proof, products tell us what the proof is about, and entities tell us which supplier, site, company, or other business entity the proof belongs to.
 
-These are the data types Passionfruit understands. They are separate from the source system we connect to. For example, documents may come from Manual Masters QMS or SharePoint, products may come from a product database, and entities may come from a supplier portal or custom API.
+These are the data types Passionfruit understands. They are separate from the source system we connect to. For example, documents may come from a quality management system, document management system, ERP export, or SharePoint. Products may come from a product database, and entities may come from a supplier portal or custom API.
 
 <Info>
   Using SharePoint? See the [SharePoint integration guide](/docs/sharepoint) for
@@ -59,7 +59,7 @@ A special integration can connect to a standard source, a customer-specific sour
 
 | Source                             | Can provide                                                        | Typical use                                                                                                                                  |
 | ---------------------------------- | ------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| Manual Masters, Normec, QMS        | Documents                                                          | QMS documents and quality records, such as product specs, packaging documents, policies and procedures, supplier documents, and lab results. |
+| Quality or document management system, such as Oculus, Manual Masters, or Normec | Documents                                                          | Quality documents and records, such as product specs, packaging documents, policies and procedures, supplier documents, and lab results. |
 | SharePoint, Google Drive, OneDrive | Documents, sometimes product and entity references                 | Existing document libraries with specifications, certificates, declarations, and other quality documents.                                    |
 | Product database, PIM, ERP, or PLM | Products, sometimes entities and documents                         | Product master data, item codes, material numbers, product attributes, and product ownership.                                                |
 | MS Fabric                          | Products, documents, and entities, depending on the customer setup | Structured product, document, or entity data made available through the customer's data platform.                                            |
@@ -320,7 +320,7 @@ flowchart LR
 
 | Approach | How it works                                          | When we use it                                                                                                         |
 | -------- | ----------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| Pull     | Passionfruit reads from the customer's source system. | Default for SharePoint, Manual Masters QMS, Fabric, product databases, supplier portals, exports, and custom APIs.     |
+| Pull     | Passionfruit reads from the customer's source system. | Default for SharePoint, quality or document management systems, Fabric, product databases, supplier portals, exports, and custom APIs. |
 | Push     | The customer sends records or files to Passionfruit.  | Only when the customer cannot expose a readable source, or when their system is already built around pushing data out. |
 
 For most customers, pull is simpler: Passionfruit controls the sync schedule, handles retries, and can re-read data when something needs to be fixed.
