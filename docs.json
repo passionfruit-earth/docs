@@ -74,64 +74,6 @@
           },
 
           {
-            "group": "Knowledge Base",
-            "icon": "folder-open",
-            "collapsed": true,
-            "pages": [
-              {
-                "group": "Evidence",
-                "collapsed": true,
-                "pages": [
-                  "docs/knowledge-base/evidence-upload",
-                  "docs/knowledge-base/evidence-sync",
-                  "docs/knowledge-base/evidence-versions",
-                  "docs/knowledge-base/evidence-organize",
-                  "docs/knowledge-base/evidence-auto-tagging",
-                  "docs/knowledge-base/delete-evidence",
-                  "docs/knowledge-base/evidence-select"
-                ]
-              },
-              {
-                "group": "Entities",
-                "collapsed": true,
-                "pages": [
-                  "docs/knowledge-base/entities-create",
-                  "docs/knowledge-base/entities-edit",
-                  "docs/knowledge-base/entities-delete",
-                  "docs/knowledge-base/entities-select"
-                ]
-              },
-              {
-                "group": "Answer Library",
-                "collapsed": true,
-                "pages": [
-                  "docs/knowledge-base/answer-library-create",
-                  "docs/knowledge-base/answer-library-edit",
-                  "docs/knowledge-base/answer-library-delete",
-                  "docs/knowledge-base/answer-library-select"
-                ]
-              }
-            ]
-          },
-
-          {
-            "group": "Fill questionnaires",
-            "icon": "clipboard-list",
-            "collapsed": false,
-            "pages": [
-              "docs/fill-questionnaires/start-questionnaire",
-              "docs/fill-questionnaires/ask-question",
-              "docs/fill-questionnaires/search-configuration",
-              "docs/fill-questionnaires/generate-answers",
-              "docs/fill-questionnaires/review-answers",
-              "docs/fill-questionnaires/place-answers",
-              "docs/fill-questionnaires/save-to-answer-library",
-              "docs/fill-questionnaires/manage-chats",
-              "docs/fill-questionnaires/excel-functions"
-            ]
-          },
-
-          {
             "group": "Integrations",
             "icon": "plug",
             "collapsed": true,
@@ -153,16 +95,6 @@
             }
           ]
         }
-      },
-      {
-        "tab": "Changelog",
-        "groups": [
-          {
-            "group": "Changelog",
-            "icon": "clock-rotate-left",
-            "pages": ["changelog"]
-          }
-        ]
       }
     ]
   },
