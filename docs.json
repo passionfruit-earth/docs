@@ -77,7 +77,12 @@
             "group": "Integrations",
             "icon": "plug",
             "collapsed": true,
-            "pages": ["docs/sharepoint"]
+            "pages": [
+              "docs/integrate-with-passionfruit",
+              "docs/sharepoint",
+              "docs/google-drive",
+              "docs/custom-integrations"
+            ]
           },
           {
             "group": "Analytics",

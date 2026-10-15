@@ -1,0 +1,104 @@
+---
+title: "Custom integrations"
+description: "Connect your own data platform, ERP, or internal API"
+---
+
+Custom integrations connect Passionfruit to systems that are specific to your company, such as MS Fabric, Microsoft Dynamics, or an internal API. You decide which information Passionfruit can use, and where it lives. We teach the agent how to find it.
+
+See [Integrate with Passionfruit](/docs/integrate-with-passionfruit) for how integrations work.
+
+## What you can connect
+
+- **Your organization map.** Your entity and product lists. Every setup starts here.
+- **Product information.** Specifications, allergens, nutritional values, shelf life.
+- **Packaging, orders, and more.** Any information your quality team uses, from any system with an API.
+
+Each type of information can come from a different system. For example, product specifications from your data platform and orders from your ERP.
+
+## Setup
+
+<Steps>
+  <Step title="Share your entity and product lists">
+    An endpoint or export with your entities and products. See [Entities](#entities) and [Products](#products) below for the minimum fields.
+  </Step>
+  <Step title="Tell us where your information lives">
+    For each type of information, tell us which system and endpoint holds it. For example: specifications in MS Fabric, orders in Microsoft Dynamics.
+  </Step>
+  <Step title="Give access">
+    Create credentials for Passionfruit, such as an app registration or API token. Access is read-only unless you decide otherwise.
+  </Step>
+  <Step title="We connect and teach the agent">
+    We map your fields and teach the agent how your systems are structured, so it fetches the right information for every task.
+  </Step>
+  <Step title="Test with real tasks">
+    Your team checks the results on real work before going live.
+  </Step>
+</Steps>
+
+<Info>
+  Custom integrations are set up together with our team. Email
+  hello@passionfruit.earth to get started.
+</Info>
+
+## Endpoint reference
+
+Field names can differ in your system; we map them for you.
+
+### Entities
+
+```json
+{
+  "entityId": "210552",
+  "entityName": "Raps bv",
+  "entityType": "supplier"
+}
+```
+
+| Field       | Required    | Purpose                                                  |
+| ----------- | ----------- | -------------------------------------------------------- |
+| Entity ID   | Yes         | Stable ID from your system.                              |
+| Entity name | Yes         | Shown in Passionfruit.                                   |
+| Entity type | Recommended | For example customer, supplier, site, or manufacturer.   |
+
+### Products
+
+```json
+{
+  "itemCode": "400.00010",
+  "productName": "Unifiber Soy",
+  "productGroup": "Fibers"
+}
+```
+
+| Field                   | Required    | Purpose                      |
+| ----------------------- | ----------- | ---------------------------- |
+| Item code or product ID | Yes         | Stable ID from your system.  |
+| Product name            | Yes         | Shown in Passionfruit.       |
+| Product group           | Recommended | Used to organize and filter. |
+
+### Information
+
+Any endpoint that returns information for a product or entity by its ID, such as specifications, packaging, or orders. For example `GET /products/{itemCode}/specification`. Passionfruit calls it when a task needs that information. There is no fixed format: we map your response for you.
+
+### Documents
+
+Only needed when documents come from a custom integration instead of a DMS.
+
+```json
+{
+  "documentId": "DOC-100245",
+  "filename": "604833_SDS_EN_20170606.pdf",
+  "lastModified": "2026-06-17T08:24:49.379Z",
+  "downloadUrl": "https://source.example.com/files/100245/content",
+  "itemCode": "400.00010",
+  "entityId": "210552"
+}
+```
+
+| Field                      | Required    | Purpose                                     |
+| -------------------------- | ----------- | ------------------------------------------- |
+| Document ID                | Yes         | Stable ID from your system.                 |
+| Filename                   | Yes         | Shown in Passionfruit.                      |
+| Last modified              | Yes         | Used to pick up only new and changed files. |
+| Download URL               | Yes         | Used to fetch the file.                     |
+| Item code and entity ID    | Recommended | Links the document to products and entities. |
