@@ -72,54 +72,62 @@ The agent learns how to work with your systems. For the integration library this
 
 ## Your systems
 
+Passionfruit connects to the systems you already use, in three ways. Every setup starts with your [organization map](#organization-map), which can come from any of your systems or from a CSV or Excel export. Each integration then adds the information you need.
+
 <CardGroup cols={3}>
-  <Card title="Integration library" icon="plug">
-    Ready-made integrations for quality and supplier platforms, such as
-    TraceGains and Manual Masters. Available out of the box.
+  <Card title="Integration library" icon="plug" href="#integration-library">
+    Ready-made integrations for quality and supplier platforms.
   </Card>
-  <Card title="Custom integrations" icon="screwdriver-wrench">
-    Your own data platforms, ERP, and internal APIs, such as MS Fabric and
-    Microsoft Dynamics.
+  <Card title="Custom integrations" icon="screwdriver-wrench" href="#custom-integrations">
+    Your own data platforms, ERP, and internal APIs.
   </Card>
-  <Card title="DMS" icon="folder-open">
-    Document management systems such as SharePoint and Google Drive. Synced and
-    organized.
+  <Card title="DMS" icon="folder-open" href="#dms">
+    Document management systems such as SharePoint and Google Drive.
   </Card>
 </CardGroup>
 
-**What we need from you**
+### Integration library
 
-Every setup starts with your [organization map](#organization-map). It can come from any of your systems, or from a CSV or Excel export. With the map in place, each integration adds the information you need.
+Ready-made integrations for the quality and supplier platforms used across the food industry. Already using one of them? Then you're almost done: you give us access, and we switch it on. No development, no mapping, no waiting.
 
-| Type                | What you provide                                                                                                                                          |
-| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Integration library | Access to the platform. We configure the connection.                                                                                                      |
-| Custom integrations | Access to the information you want to use, such as product specifications, packaging, or orders. You tell us where each type of information lives, and we teach the agent. |
-| DMS                 | Access to the folders or libraries you want to include.                                                                                                   |
+<CardGroup cols={3}>
+  <Card title="TasteStrik" icon="circle-check">
+    Available now.
+  </Card>
+  <Card title="TraceGains" icon="clock">
+    Coming soon.
+  </Card>
+  <Card title="Manual Masters" icon="clock">
+    Coming soon.
+  </Card>
+</CardGroup>
 
-**Setup guides**
+Don't see your platform? Let us know at `hello@passionfruit.earth`. We add new integrations to the library all the time.
+
+### Custom integrations
+
+Every company has its own systems: a data platform like MS Fabric, an ERP like Microsoft Dynamics, a PLM, or an internal API. With a custom integration, Passionfruit works with them just as well.
+
+You tell us which information you want to use and where it lives, such as product specifications, packaging, or orders. We connect to it and teach the agent how your systems are structured, so it always fetches the right information.
+
+<Card title="Custom integrations" icon="screwdriver-wrench" href="/docs/custom-integrations" horizontal>
+  How we set up a custom integration together with you.
+</Card>
+
+### DMS
+
+Your documents probably already live in a document management system (DMS). Passionfruit syncs them and keeps them in sync. Your DMS stays the source of truth: new and changed files are picked up automatically, and Passionfruit never edits or deletes your files.
 
 <CardGroup cols={2}>
   <Card title="SharePoint" icon="microsoft" href="/docs/sharepoint">
-    Connect a SharePoint site or folder with Microsoft Entra ID, step by step.
-  </Card>
-  <Card title="Custom integrations" icon="screwdriver-wrench" href="/docs/custom-integrations">
-    Connect your own data platform, ERP, or internal API.
+    Connect a site or folder with Microsoft Entra ID.
   </Card>
   <Card title="Google Drive" icon="google-drive" href="/docs/google-drive">
-    Share a folder with Passionfruit and keep your documents in sync.
-  </Card>
-  <Card title="Syncing documents" icon="arrows-rotate" href="/docs/knowledge-base/evidence-sync">
-    Review, assign, and import files from connected sources.
-  </Card>
-  <Card title="Single Sign-On" icon="key" href="/docs/installation/sso">
-    Let your team sign in with their work account.
+    Share a folder with your custom Passionfruit email address.
   </Card>
 </CardGroup>
 
-### Documents
-
-Documents from your DMS are synced and kept in sync. Your DMS stays the source of truth: new and changed files are picked up automatically, and Passionfruit never edits or deletes your files. You choose which folders, document types, or statuses are included. Your own metadata, such as columns and labels in SharePoint, comes along with each document, and can also be used to create and match products and entities in your organization map.
+You choose which folders, document types, or statuses are included. Your own metadata, such as columns and labels in SharePoint, comes along with each document, and can also be used to create and match products and entities in your organization map.
 
 We sync your documents so the agent can find what it needs right away, without you having to search for files or pick them yourself.
 
