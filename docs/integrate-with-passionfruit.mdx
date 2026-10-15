@@ -55,6 +55,33 @@ The map is what makes everything else work:
   />
 </div>
 
+**Technical details**
+
+<AccordionGroup>
+  <Accordion title="How the map is filled" icon="sitemap">
+    Passionfruit reads two lists from your system: entities (customers, suppliers, sites) and products. Usually this is a list endpoint, such as _list entities_ and _list products_. A CSV or Excel export works too, to get started.
+
+    Only the minimum is needed. Field names can differ in your system; we map them for you.
+
+    ```json
+    { "entityId": "210552", "entityName": "Raps bv", "entityType": "supplier" }
+    ```
+
+    ```json
+    { "itemCode": "400.00010", "productName": "Unifiber Soy", "productGroup": "Fibers" }
+    ```
+
+    | List     | Required   | Recommended |
+    | -------- | ---------- | ----------- |
+    | Entities | ID, name   | Type        |
+    | Products | ID, name   | Group       |
+  </Accordion>
+
+  <Accordion title="Sync schedule" icon="clock">
+    The map is updated on a schedule, for example four times a day. The first sync reads all products and entities. After that, Passionfruit only reads what changed, and updates existing records instead of creating duplicates, based on their ID.
+  </Accordion>
+</AccordionGroup>
+
 ## Intelligent integration layer
 
 Your information is spread across systems: specifications in your ERP or data platform, certificates in your quality system, signed questionnaires in SharePoint. The integration layer knows where each piece of information lives, and how to get it.
@@ -109,6 +136,33 @@ You tell us which information you want to use and where it lives, such as produc
   How we set up a custom integration together with you.
 </Card>
 
+**Technical details**
+
+<AccordionGroup>
+  <Accordion title="How information is fetched" icon="bolt">
+    Details such as specifications, packaging, or orders are not copied in advance. When a task needs them, the agent looks up the product or entity in your organization map, and fetches the details from your system using that ID. For example `GET /products/{itemCode}/specification`.
+
+    For the integration library, these calls are built in. For custom integrations, any endpoint that returns information by product or entity ID works. There is no fixed format: we map your response and teach the agent which endpoint holds which information.
+  </Accordion>
+
+  <Accordion title="Documents from a custom system" icon="file-code">
+    When documents come from your own system instead of a DMS, Passionfruit reads a document list and downloads the files.
+
+    ```json
+    {
+      "documentId": "DOC-100245",
+      "filename": "604833_SDS_EN_20170606.pdf",
+      "lastModified": "2026-06-17T08:24:49.379Z",
+      "downloadUrl": "https://source.example.com/files/100245/content",
+      "itemCode": "400.00010",
+      "entityId": "210552"
+    }
+    ```
+
+    The ID, filename, last modified date, and download URL are required. The item code and entity ID link the document to your organization map.
+  </Accordion>
+</AccordionGroup>
+
 ### Document management system (DMS)
 
 Your documents probably already live in a document management system, such as SharePoint or Google Drive. Passionfruit syncs them and keeps them in sync. Your DMS stays the source of truth, and Passionfruit never edits or deletes your files.
@@ -142,91 +196,7 @@ We sync your documents so the agent can find what it needs right away, without y
 
 Supported file types: PDF (`.pdf`), Word (`.docx`, `.doc`), Excel (`.xlsx`, `.xls`), PowerPoint (`.pptx`, `.ppt`), and email (`.eml`, `.msg`).
 
-## Security
-
-- **Read-only by default.** Passionfruit only writes to your systems when you grant write access, and write actions can require approval by your team.
-- **Only what you share.** Passionfruit only sees the lists, folders, and systems you connect.
-- **Your authentication.** Connections run server-to-server, using app registration (for example Microsoft Entra ID), API tokens, or the method your system requires.
-- **Built to be reliable.** Failed requests are retried, and one bad file or record never blocks the rest.
-
-## Getting started
-
-<Steps>
-  <Step title="Tell us your systems">
-    Which systems hold your products, suppliers, documents, and details.
-  </Step>
-  <Step title="Share access">
-    Your entity and product lists, plus access to the systems and folders
-    with the information you want to use.
-  </Step>
-  <Step title="We connect and teach the agent">
-    We configure the integrations and teach the agent how your company is
-    organized.
-  </Step>
-  <Step title="Test with real tasks">
-    Your team checks the results on real work before going live.
-  </Step>
-</Steps>
-
-## Technical details
-
-For IT teams who want to know exactly how each part works.
-
-### Organization map sync
-
-<AccordionGroup>
-  <Accordion title="How the map is filled" icon="sitemap">
-    Passionfruit reads two lists from your system: entities (customers, suppliers, sites) and products. Usually this is a list endpoint, such as _list entities_ and _list products_. A CSV or Excel export works too, to get started.
-
-    Only the minimum is needed. Field names can differ in your system; we map them for you.
-
-    ```json
-    { "entityId": "210552", "entityName": "Raps bv", "entityType": "supplier" }
-    ```
-
-    ```json
-    { "itemCode": "400.00010", "productName": "Unifiber Soy", "productGroup": "Fibers" }
-    ```
-
-    | List     | Required   | Recommended |
-    | -------- | ---------- | ----------- |
-    | Entities | ID, name   | Type        |
-    | Products | ID, name   | Group       |
-  </Accordion>
-
-  <Accordion title="Sync schedule" icon="clock">
-    The map is updated on a schedule, for example four times a day. The first sync reads all products and entities. After that, Passionfruit only reads what changed, and updates existing records instead of creating duplicates, based on their ID.
-  </Accordion>
-</AccordionGroup>
-
-### Integration library and custom integrations
-
-<AccordionGroup>
-  <Accordion title="How information is fetched" icon="bolt">
-    Details such as specifications, packaging, or orders are not copied in advance. When a task needs them, the agent looks up the product or entity in your organization map, and fetches the details from your system using that ID. For example `GET /products/{itemCode}/specification`.
-
-    For the integration library, these calls are built in. For custom integrations, any endpoint that returns information by product or entity ID works. There is no fixed format: we map your response and teach the agent which endpoint holds which information.
-  </Accordion>
-
-  <Accordion title="Documents from a custom system" icon="file-code">
-    When documents come from your own system instead of a DMS, Passionfruit reads a document list and downloads the files.
-
-    ```json
-    {
-      "documentId": "DOC-100245",
-      "filename": "604833_SDS_EN_20170606.pdf",
-      "lastModified": "2026-06-17T08:24:49.379Z",
-      "downloadUrl": "https://source.example.com/files/100245/content",
-      "itemCode": "400.00010",
-      "entityId": "210552"
-    }
-    ```
-
-    The ID, filename, last modified date, and download URL are required. The item code and entity ID link the document to your organization map.
-  </Accordion>
-</AccordionGroup>
-
-### Document management systems
+**Technical details**
 
 <AccordionGroup>
   <Accordion title="When a sync is triggered" icon="bell">
@@ -270,7 +240,14 @@ For IT teams who want to know exactly how each part works.
   </Accordion>
 </AccordionGroup>
 
-### All integrations
+## Security
+
+- **Read-only by default.** Passionfruit only writes to your systems when you grant write access, and write actions can require approval by your team.
+- **Only what you share.** Passionfruit only sees the lists, folders, and systems you connect.
+- **Your authentication.** Connections run server-to-server, using app registration (for example Microsoft Entra ID), API tokens, or the method your system requires.
+- **Built to be reliable.** Failed requests are retried, and one bad file or record never blocks the rest.
+
+**Technical details**
 
 <AccordionGroup>
   <Accordion title="Authentication" icon="key">
@@ -303,3 +280,22 @@ For IT teams who want to know exactly how each part works.
     Connection errors are shown on the integration. Errors for a single document, product, or entity are recorded on that record.
   </Accordion>
 </AccordionGroup>
+
+## Getting started
+
+<Steps>
+  <Step title="Tell us your systems">
+    Which systems hold your products, suppliers, documents, and details.
+  </Step>
+  <Step title="Share access">
+    Your entity and product lists, plus access to the systems and folders
+    with the information you want to use.
+  </Step>
+  <Step title="We connect and teach the agent">
+    We configure the integrations and teach the agent how your company is
+    organized.
+  </Step>
+  <Step title="Test with real tasks">
+    Your team checks the results on real work before going live.
+  </Step>
+</Steps>
