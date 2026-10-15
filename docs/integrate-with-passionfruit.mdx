@@ -89,10 +89,17 @@ Your information is spread across systems: specifications in your ERP or data pl
 When a task needs information, the agent finds the product or supplier in the organization map, then fetches the details from the right system using that ID. For example:
 
 ```mermaid
+%%{init: {"theme": "base", "themeVariables": {"fontFamily": "Inter, sans-serif", "fontSize": "14px", "lineColor": "#B4B2A9", "edgeLabelBackground": "#FFFFFF", "primaryTextColor": "#2C2C2A"}}}%%
 flowchart LR
-  A["Questionnaire for<br/>product 400.00010"] --> B["Organization map<br/>finds the product"]
-  B -->|"product ID"| C["Your system<br/>returns the specification"]
-  C --> D["Agent fills in the answer<br/>with a link to the source"]
+  A("Fill product spec for<br/>product 400.38271") --> B("Organization map<br/>finds the product")
+  B -- "product ID" --> C("Your system<br/>returns the specification")
+  C --> D("Agent fills in the spec<br/>with a link to the source")
+  classDef step fill:#FFFFFF,stroke:#D3D1C7,stroke-width:1px,color:#2C2C2A
+  classDef pf fill:#EEEDFE,stroke:#AFA9EC,stroke-width:1px,color:#3C3489
+  classDef agent fill:#FAECE7,stroke:#F0997B,stroke-width:1px,color:#712B13
+  class A,C step
+  class B pf
+  class D agent
 ```
 
 ### How the integration layer works

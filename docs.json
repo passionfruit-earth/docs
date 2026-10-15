@@ -57,7 +57,6 @@
             "icon": "rocket",
             "pages": [
               "docs/installation/start-guide",
-              "docs/installation/concepts",
               "docs/installation/apps",
               "docs/installation/install"
             ]
