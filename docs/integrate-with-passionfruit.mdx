@@ -81,7 +81,7 @@ Passionfruit connects to the systems you already use, in three ways. Every setup
   <Card title="Custom integrations" icon="screwdriver-wrench" href="#custom-integrations">
     Your own data platforms, ERP, and internal APIs.
   </Card>
-  <Card title="DMS" icon="folder-open" href="#dms">
+  <Card title="DMS" icon="folder-open" href="#document-management-system-dms">
     Document management systems such as SharePoint and Google Drive.
   </Card>
 </CardGroup>
@@ -109,9 +109,9 @@ You tell us which information you want to use and where it lives, such as produc
   How we set up a custom integration together with you.
 </Card>
 
-### DMS
+### Document management system (DMS)
 
-Your documents probably already live in a document management system (DMS). Passionfruit syncs them and keeps them in sync. Your DMS stays the source of truth: new and changed files are picked up automatically, and Passionfruit never edits or deletes your files.
+Your documents probably already live in a document management system, such as SharePoint or Google Drive. Passionfruit syncs them and keeps them in sync. Your DMS stays the source of truth, and Passionfruit never edits or deletes your files.
 
 <CardGroup cols={2}>
   <Card title="SharePoint" icon="microsoft" href="/docs/sharepoint">
@@ -122,7 +122,13 @@ Your documents probably already live in a document management system (DMS). Pass
   </Card>
 </CardGroup>
 
-You choose which folders, document types, or statuses are included. Your own metadata, such as columns and labels in SharePoint, comes along with each document, and can also be used to create and match products and entities in your organization map.
+**How the sync works**
+
+1. **You choose what to share.** A site, library, or folder, and if you want, which document types or statuses to include.
+2. **We do a first full sync.** Every document in scope is imported, linked to the right products, customers, and suppliers, and made searchable for the agent.
+3. **After that, changes come in automatically.** When a file is added or changed, your DMS lets Passionfruit know, and we sync just that change. Updated files are saved as a new version, so the history is kept.
+
+Your own metadata, such as columns and labels in SharePoint, comes along with each document, and can also be used to create and match products and entities in your organization map.
 
 We sync your documents so the agent can find what it needs right away, without you having to search for files or pick them yourself.
 
@@ -164,99 +170,46 @@ Supported file types: PDF (`.pdf`), Word (`.docx`, `.doc`), Excel (`.xlsx`, `.xl
 
 ## Technical details
 
-For IT teams who want to know exactly how integrations work.
+For IT teams who want to know exactly how each part works.
+
+### Organization map sync
 
 <AccordionGroup>
-  <Accordion title="Authentication" icon="key">
-    Passionfruit connects to your systems server-to-server. Your team never has to share personal passwords.
+  <Accordion title="How the map is filled" icon="sitemap">
+    Passionfruit reads two lists from your system: entities (customers, suppliers, sites) and products. Usually this is a list endpoint, such as _list entities_ and _list products_. A CSV or Excel export works too, to get started.
 
-    - **App registration**, for example in Microsoft Entra ID for SharePoint and other Microsoft 365 sources. Your existing policies, such as conditional access, keep applying.
-    - **HTTP header authentication**, for example `Authorization: Bearer <token>`.
-    - **Folder sharing** with a custom Passionfruit email address, for Google Drive.
-    - **Custom authentication**, depending on the source system.
-
-    Access is read-only by default. Write access is only used when you grant it.
-  </Accordion>
-
-  <Accordion title="What is stored where" icon="database">
-    | Data                  | Where it lives                                                                                          |
-    | --------------------- | ------------------------------------------------------------------------------------------------------- |
-    | Organization map      | Stored in Passionfruit: IDs, names, and a few key attributes per product and entity.                    |
-    | Information from your systems | Fetched from your system when a task needs it, and used for that task.                          |
-    | Documents             | Synced to Passionfruit: the file, its metadata, and processed content for search. Your DMS stays the source. |
-  </Accordion>
-
-  <Accordion title="How sync works" icon="arrows-rotate">
-    Integrations are pull-based by default. Passionfruit reads from your system on a schedule, so your system does not need to call Passionfruit. Push is possible when a system can only send data out, for example to an agreed storage location.
-
-    For documents, a sync runs in three steps:
-
-    1. **Read metadata.** Passionfruit pages through the documents in scope and reads metadata such as document ID, filename, file type, item code, entity reference, and last modified date. File content is not copied yet.
-    2. **Import.** Documents in scope are downloaded, converted when needed, and checked for duplicates. Depending on the setup, your team can review them first.
-    3. **Link and process.** Each document is linked to the right products and entities in your organization map, and processed so the agent can search it.
-
-    For the organization map, Passionfruit reads changed products and entities and updates them directly.
-  </Accordion>
-
-  <Accordion title="Sync schedule" icon="clock">
-    | Phase        | Behavior                                                                                   |
-    | ------------ | ------------------------------------------------------------------------------------------ |
-    | First sync   | Reads everything in scope.                                                                 |
-    | Ongoing sync | Reads only new or changed records, using the last modified date or a cursor from the previous sync. |
-    | Manual sync  | Can be triggered for setup, support, or reprocessing.                                      |
-
-    The sync frequency is configurable. Common options are every 15 minutes, hourly, or daily.
-  </Accordion>
-
-  <Accordion title="Deduplication" icon="clone">
-    | Level             | Method                                   | Result                                                  |
-    | ----------------- | ---------------------------------------- | ------------------------------------------------------- |
-    | Source document   | Stable source document ID                | The same document is staged once.                       |
-    | File content      | File checksum                            | The same file is not imported twice.                    |
-    | Product or entity | Stable product ID, item code, or entity ID | The existing record is updated instead of recreated. |
-
-    If the same file is linked to several products, it is stored once and linked to all of them.
-  </Accordion>
-
-  <Accordion title="Reliability" icon="shield-check">
-    | Behavior           | Default                                                     |
-    | ------------------ | ----------------------------------------------------------- |
-    | Request timeout    | 15 seconds per request.                                     |
-    | Retries            | Up to 2 retries for temporary failures.                     |
-    | Retry status codes | `408`, `429`, `500`, `502`, `503`, `504`.                   |
-    | Error isolation    | One bad file or record does not block the rest of the sync. |
-
-    Connection errors are shown on the integration. Errors for a single document, product, or entity are recorded on that record.
-  </Accordion>
-
-  <Accordion title="File types and limits" icon="file">
-    | Type       | Extensions       | Handling                     |
-    | ---------- | ---------------- | ---------------------------- |
-    | PDF        | `.pdf`           | Stored as is.                |
-    | Word       | `.docx`, `.doc`  | `.doc` is converted to `.docx`. |
-    | Excel      | `.xlsx`, `.xls`  | `.xls` is converted to `.xlsx`. |
-    | PowerPoint | `.pptx`, `.ppt`  | Converted to PDF.            |
-    | Email      | `.eml`, `.msg`   | Read as email.               |
-
-    Files can be up to 150 MB. Files that are too large or of another type are skipped and reported, and never block the rest of the sync.
-  </Accordion>
-
-  <Accordion title="Data formats" icon="code">
-    Field names can differ in your system. We map them for you.
-
-    **Entities** (minimum: ID and name)
+    Only the minimum is needed. Field names can differ in your system; we map them for you.
 
     ```json
     { "entityId": "210552", "entityName": "Raps bv", "entityType": "supplier" }
     ```
 
-    **Products** (minimum: ID and name)
-
     ```json
     { "itemCode": "400.00010", "productName": "Unifiber Soy", "productGroup": "Fibers" }
     ```
 
-    **Documents from a custom system**
+    | List     | Required   | Recommended |
+    | -------- | ---------- | ----------- |
+    | Entities | ID, name   | Type        |
+    | Products | ID, name   | Group       |
+  </Accordion>
+
+  <Accordion title="Sync schedule" icon="clock">
+    The map is updated on a schedule, for example four times a day. The first sync reads all products and entities. After that, Passionfruit only reads what changed, and updates existing records instead of creating duplicates, based on their ID.
+  </Accordion>
+</AccordionGroup>
+
+### Integration library and custom integrations
+
+<AccordionGroup>
+  <Accordion title="How information is fetched" icon="bolt">
+    Details such as specifications, packaging, or orders are not copied in advance. When a task needs them, the agent looks up the product or entity in your organization map, and fetches the details from your system using that ID. For example `GET /products/{itemCode}/specification`.
+
+    For the integration library, these calls are built in. For custom integrations, any endpoint that returns information by product or entity ID works. There is no fixed format: we map your response and teach the agent which endpoint holds which information.
+  </Accordion>
+
+  <Accordion title="Documents from a custom system" icon="file-code">
+    When documents come from your own system instead of a DMS, Passionfruit reads a document list and downloads the files.
 
     ```json
     {
@@ -269,6 +222,84 @@ For IT teams who want to know exactly how integrations work.
     }
     ```
 
-    **Other information**, such as specifications, packaging, or orders: any endpoint that returns information by product or entity ID. There is no fixed format.
+    The ID, filename, last modified date, and download URL are required. The item code and entity ID link the document to your organization map.
+  </Accordion>
+</AccordionGroup>
+
+### Document management systems
+
+<AccordionGroup>
+  <Accordion title="When a sync is triggered" icon="bell">
+    | DMS          | Trigger                                                                                                                                  |
+    | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
+    | SharePoint   | A Microsoft Graph webhook notifies Passionfruit when something changes, and Passionfruit fetches just the changes. As a safety net, Passionfruit also checks for changes every 15 minutes. The webhook subscription is renewed automatically. |
+    | Google Drive | Passionfruit reads the Google Drive changes since the last sync, for the folders shared with your custom Passionfruit email address. |
+
+    You can also trigger a sync manually, for setup, support, or reprocessing.
+  </Accordion>
+
+  <Accordion title="Sync steps" icon="arrows-rotate">
+    1. **Read metadata.** Passionfruit reads metadata such as document ID, filename, file type, folder path, your own columns, and last modified date. File content is not copied yet.
+    2. **Import.** Documents in scope are downloaded, converted when needed, and checked for duplicates. Depending on the setup, your team can review them first.
+    3. **Link and process.** Each document is linked to the right products and entities in your organization map, and processed so the agent can search it.
+  </Accordion>
+
+  <Accordion title="Metadata mapping" icon="tags">
+    Your own metadata comes along with each document. In SharePoint, you choose which list columns to include. Columns or your folder structure can also be used to match each document to a product or entity, or to create new ones in your organization map.
+  </Accordion>
+
+  <Accordion title="Deduplication and versions" icon="clone">
+    | Level           | Method                    | Result                                 |
+    | --------------- | ------------------------- | -------------------------------------- |
+    | Source document | Stable source document ID | The same document is imported once.    |
+    | File content    | File checksum             | The same file is not imported twice.   |
+
+    When a file changes, the new file is saved as a new version. The old version stays in the history.
+  </Accordion>
+
+  <Accordion title="File types and limits" icon="file">
+    | Type       | Extensions      | Handling                        |
+    | ---------- | --------------- | ------------------------------- |
+    | PDF        | `.pdf`          | Stored as is.                   |
+    | Word       | `.docx`, `.doc` | `.doc` is converted to `.docx`. |
+    | Excel      | `.xlsx`, `.xls` | `.xls` is converted to `.xlsx`. |
+    | PowerPoint | `.pptx`, `.ppt` | Converted to PDF.               |
+    | Email      | `.eml`, `.msg`  | Read as email.                  |
+
+    Files can be up to 150 MB. Files that are too large or of another type are skipped and reported.
+  </Accordion>
+</AccordionGroup>
+
+### All integrations
+
+<AccordionGroup>
+  <Accordion title="Authentication" icon="key">
+    Passionfruit connects to your systems server-to-server. Your team never has to share personal passwords.
+
+    - **App registration**, for example in Microsoft Entra ID for SharePoint. Your existing policies, such as conditional access, keep applying.
+    - **HTTP header authentication**, for example `Authorization: Bearer <token>`.
+    - **Folder sharing** with a custom Passionfruit email address, for Google Drive.
+    - **Custom authentication**, depending on the source system.
+
+    Access is read-only by default. Write access is only used when you grant it.
+  </Accordion>
+
+  <Accordion title="What is stored where" icon="database">
+    | Data                          | Where it lives                                                                                               |
+    | ----------------------------- | ------------------------------------------------------------------------------------------------------------ |
+    | Organization map              | Stored in Passionfruit: IDs, names, and a few key attributes per product and entity.                         |
+    | Information from your systems | Fetched from your system when a task needs it, and used for that task.                                       |
+    | Documents                     | Synced to Passionfruit: the file, its metadata, and processed content for search. Your DMS stays the source. |
+  </Accordion>
+
+  <Accordion title="Reliability" icon="shield-check">
+    | Behavior           | Default                                                     |
+    | ------------------ | ----------------------------------------------------------- |
+    | Request timeout    | 15 seconds per request.                                     |
+    | Retries            | Up to 2 retries for temporary failures.                     |
+    | Retry status codes | `408`, `429`, `500`, `502`, `503`, `504`.                   |
+    | Error isolation    | One bad file or record does not block the rest of the sync. |
+
+    Connection errors are shown on the integration. Errors for a single document, product, or entity are recorded on that record.
   </Accordion>
 </AccordionGroup>
