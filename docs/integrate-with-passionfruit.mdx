@@ -97,12 +97,12 @@ flowchart LR
 
 ### How the integration layer works
 
-The integration layer sits between the agent and your systems. It is built up in layers, and every request from the agent passes through all of them.
+The agent is what does the work. It reads the task, decides which information it needs, and asks for it. The integration layer makes sure that question reaches the right system, in the right way, within your rules. Every request passes through these layers.
 
 <div className="bg-[#FDFDFD] rounded-lg flex items-center justify-center overflow-hidden outline-[0.5px] outline outline-black/10 p-4">
   <img
     src="/images/integrations/integration-layer-stack.svg"
-    alt="Stacked layers: agent, capabilities, configuration, your policies, integrations, and your systems"
+    alt="Stacked layers: agent, capabilities, configuration, authorization, and integrations to your systems"
     className="w-full max-w-xl h-auto my-0"
   />
 </div>
@@ -114,13 +114,17 @@ The integration layer sits between the agent and your systems. It is built up in
   <Step title="Configuration: how it is set up for you">
     Your setup tells the agent which source to use for what, and how. Which system holds specifications and which holds certificates, which fields to use, and which source wins when two disagree. For example: in MS Fabric, use the external tolerance limits, not the internal ones. In SharePoint, only include certified documents, and use the **Customer** column to link each document to a customer. We configure this together with you, and adjust it as we learn how your team works.
   </Step>
-  <Step title="Your policies: who may see and do what">
+  <Step title="Authorization: who may see and do what">
     Your own rules always apply. Access follows your permissions, for example in Microsoft Entra ID, so the agent only sees what you allow. Write actions follow your approval flow: nothing is changed in your systems until someone on your team approves it.
   </Step>
-  <Step title="Integrations: the connection to each system">
-    For every system there is an integration that does the actual work: it logs in, calls the system's API, and turns the answer into products, entities, and documents that Passionfruit understands. For example, the MS Fabric integration turns Fabric's tables and field names into products and specifications. Integrations from the library are ready to use. For custom integrations, we build one for your system.
+  <Step title="Integrations: your systems, plugged in">
+    Each of your systems plugs into Passionfruit through an integration: from the [integration library](#integration-library), a [custom integration](#custom-integrations), or your [DMS](#document-management-system-dms). The integration logs in, calls your system, and turns the answer into products, entities, and documents that Passionfruit understands.
   </Step>
 </Steps>
+
+<Info>
+  Documents from your DMS work a little differently. They are synced in the background, without the agent, so they are ready before a task starts. During a task, the agent searches the synced documents instead of opening your DMS.
+</Info>
 
 **It gets better over time**
 
