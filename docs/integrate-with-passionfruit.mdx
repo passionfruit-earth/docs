@@ -158,3 +158,114 @@ Supported file types: PDF (`.pdf`), Word (`.docx`, `.doc`), Excel (`.xlsx`, `.xl
     Your team checks the results on real work before going live.
   </Step>
 </Steps>
+
+## Technical details
+
+For IT teams who want to know exactly how integrations work.
+
+<AccordionGroup>
+  <Accordion title="Authentication" icon="key">
+    Passionfruit connects to your systems server-to-server. Your team never has to share personal passwords.
+
+    - **App registration**, for example in Microsoft Entra ID for SharePoint and other Microsoft 365 sources. Your existing policies, such as conditional access, keep applying.
+    - **HTTP header authentication**, for example `Authorization: Bearer <token>`.
+    - **Folder sharing** with a custom Passionfruit email address, for Google Drive.
+    - **Custom authentication**, depending on the source system.
+
+    Access is read-only by default. Write access is only used when you grant it.
+  </Accordion>
+
+  <Accordion title="What is stored where" icon="database">
+    | Data                  | Where it lives                                                                                          |
+    | --------------------- | ------------------------------------------------------------------------------------------------------- |
+    | Organization map      | Stored in Passionfruit: IDs, names, and a few key attributes per product and entity.                    |
+    | Information from your systems | Fetched from your system when a task needs it, and used for that task.                          |
+    | Documents             | Synced to Passionfruit: the file, its metadata, and processed content for search. Your DMS stays the source. |
+  </Accordion>
+
+  <Accordion title="How sync works" icon="arrows-rotate">
+    Integrations are pull-based by default. Passionfruit reads from your system on a schedule, so your system does not need to call Passionfruit. Push is possible when a system can only send data out, for example to an agreed storage location.
+
+    For documents, a sync runs in three steps:
+
+    1. **Read metadata.** Passionfruit pages through the documents in scope and reads metadata such as document ID, filename, file type, item code, entity reference, and last modified date. File content is not copied yet.
+    2. **Import.** Documents in scope are downloaded, converted when needed, and checked for duplicates. Depending on the setup, your team can review them first.
+    3. **Link and process.** Each document is linked to the right products and entities in your organization map, and processed so the agent can search it.
+
+    For the organization map, Passionfruit reads changed products and entities and updates them directly.
+  </Accordion>
+
+  <Accordion title="Sync schedule" icon="clock">
+    | Phase        | Behavior                                                                                   |
+    | ------------ | ------------------------------------------------------------------------------------------ |
+    | First sync   | Reads everything in scope.                                                                 |
+    | Ongoing sync | Reads only new or changed records, using the last modified date or a cursor from the previous sync. |
+    | Manual sync  | Can be triggered for setup, support, or reprocessing.                                      |
+
+    The sync frequency is configurable. Common options are every 15 minutes, hourly, or daily.
+  </Accordion>
+
+  <Accordion title="Deduplication" icon="clone">
+    | Level             | Method                                   | Result                                                  |
+    | ----------------- | ---------------------------------------- | ------------------------------------------------------- |
+    | Source document   | Stable source document ID                | The same document is staged once.                       |
+    | File content      | File checksum                            | The same file is not imported twice.                    |
+    | Product or entity | Stable product ID, item code, or entity ID | The existing record is updated instead of recreated. |
+
+    If the same file is linked to several products, it is stored once and linked to all of them.
+  </Accordion>
+
+  <Accordion title="Reliability" icon="shield-check">
+    | Behavior           | Default                                                     |
+    | ------------------ | ----------------------------------------------------------- |
+    | Request timeout    | 15 seconds per request.                                     |
+    | Retries            | Up to 2 retries for temporary failures.                     |
+    | Retry status codes | `408`, `429`, `500`, `502`, `503`, `504`.                   |
+    | Error isolation    | One bad file or record does not block the rest of the sync. |
+
+    Connection errors are shown on the integration. Errors for a single document, product, or entity are recorded on that record.
+  </Accordion>
+
+  <Accordion title="File types and limits" icon="file">
+    | Type       | Extensions       | Handling                     |
+    | ---------- | ---------------- | ---------------------------- |
+    | PDF        | `.pdf`           | Stored as is.                |
+    | Word       | `.docx`, `.doc`  | `.doc` is converted to `.docx`. |
+    | Excel      | `.xlsx`, `.xls`  | `.xls` is converted to `.xlsx`. |
+    | PowerPoint | `.pptx`, `.ppt`  | Converted to PDF.            |
+    | Email      | `.eml`, `.msg`   | Read as email.               |
+
+    Files can be up to 150 MB. Files that are too large or of another type are skipped and reported, and never block the rest of the sync.
+  </Accordion>
+
+  <Accordion title="Data formats" icon="code">
+    Field names can differ in your system. We map them for you.
+
+    **Entities** (minimum: ID and name)
+
+    ```json
+    { "entityId": "210552", "entityName": "Raps bv", "entityType": "supplier" }
+    ```
+
+    **Products** (minimum: ID and name)
+
+    ```json
+    { "itemCode": "400.00010", "productName": "Unifiber Soy", "productGroup": "Fibers" }
+    ```
+
+    **Documents from a custom system**
+
+    ```json
+    {
+      "documentId": "DOC-100245",
+      "filename": "604833_SDS_EN_20170606.pdf",
+      "lastModified": "2026-06-17T08:24:49.379Z",
+      "downloadUrl": "https://source.example.com/files/100245/content",
+      "itemCode": "400.00010",
+      "entityId": "210552"
+    }
+    ```
+
+    **Other information**, such as specifications, packaging, or orders: any endpoint that returns information by product or entity ID. There is no fixed format.
+  </Accordion>
+</AccordionGroup>
