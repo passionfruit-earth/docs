@@ -102,7 +102,7 @@ The integration layer sits between the agent and your systems. It is built up in
 <div className="bg-[#FDFDFD] rounded-lg flex items-center justify-center overflow-hidden outline-[0.5px] outline outline-black/10 p-4">
   <img
     src="/images/integrations/integration-layer-stack.svg"
-    alt="Stacked layers: agent, capabilities, company knowledge, your policies, connectors, and your systems"
+    alt="Stacked layers: agent, capabilities, configuration, your policies, integrations, and your systems"
     className="w-full max-w-xl h-auto my-0"
   />
 </div>
@@ -111,20 +111,20 @@ The integration layer sits between the agent and your systems. It is built up in
   <Step title="Capabilities: what the agent can do">
     The agent never talks to a system directly. It uses a fixed set of capabilities, such as _search products_, _read supplier_, _get specification_, or _read document_. When you allow it, also write actions, such as _update a supplier record_ or _save a completed document_. The same capabilities work for every system.
   </Step>
-  <Step title="Company knowledge: what is right for you">
-    The layer knows how your company works: which system holds which information, which fields to use, and which source wins when two disagree. For example: use the external tolerance limits, not the internal ones. We set this up together with you.
+  <Step title="Configuration: how it is set up for you">
+    Your setup tells the agent which source to use for what, and how. Which system holds specifications and which holds certificates, which fields to use, and which source wins when two disagree. For example: in MS Fabric, use the external tolerance limits, not the internal ones. In SharePoint, only include certified documents, and use the **Customer** column to link each document to a customer. We configure this together with you, and adjust it as we learn how your team works.
   </Step>
   <Step title="Your policies: who may see and do what">
     Your own rules always apply. Access follows your permissions, for example in Microsoft Entra ID, so the agent only sees what you allow. Write actions follow your approval flow: nothing is changed in your systems until someone on your team approves it.
   </Step>
-  <Step title="Connectors: how your system answers">
-    A connector translates each request into a call to your system, and the answer back into something the agent understands. For the integration library, connectors are ready to use. For custom integrations, we build them for your system, with a skill or a custom script when needed.
+  <Step title="Integrations: the connection to each system">
+    For every system there is an integration that does the actual work: it logs in, calls the system's API, and turns the answer into products, entities, and documents that Passionfruit understands. For example, the MS Fabric integration turns Fabric's tables and field names into products and specifications. Integrations from the library are ready to use. For custom integrations, we build one for your system.
   </Step>
 </Steps>
 
 **It gets better over time**
 
-When your team corrects an answer or points to a better source, we use that to refine the company knowledge. So the more your team uses Passionfruit, the better it gets at finding information the way you would. And because workflows only use capabilities, adding a new system later doesn't change how anything works. It just becomes another place the agent can look.
+When your team corrects an answer or points to a better source, we use that to refine your configuration. So the more your team uses Passionfruit, the better it gets at finding information the way you would. And because workflows only use capabilities, adding a new system later doesn't change how anything works. It just becomes another place the agent can look.
 
 ## Your systems
 
