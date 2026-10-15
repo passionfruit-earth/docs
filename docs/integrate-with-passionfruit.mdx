@@ -118,7 +118,14 @@ Every setup starts with the same two lists: your [entities and products](#organi
 
 ### Documents
 
-Documents from your DMS are synced, so the agent can search across all of them in seconds. You choose which folders, document types, or statuses are included. After the first sync, Passionfruit only picks up new and changed files, and every document is linked to the right products, customers, and suppliers.
+Documents from your DMS are synced and kept in sync. Your DMS stays the source of truth: new and changed files are picked up automatically, and Passionfruit never edits or deletes your files. You choose which folders, document types, or statuses are included.
+
+We sync documents instead of reading them during each task, because:
+
+- **It is fast.** The agent searches across thousands of documents in seconds.
+- **It is reliable.** Tasks do not depend on a live connection at the moment someone starts them.
+- **It is automatic.** The agent finds the right documents itself, without your team selecting files first.
+- **It is organized.** Every document is linked to the right products, customers, and suppliers.
 
 <div className="bg-[#FDFDFD] rounded-lg flex items-center justify-center overflow-hidden outline-[0.5px] outline outline-black/10">
   <img

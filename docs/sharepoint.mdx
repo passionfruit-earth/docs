@@ -24,6 +24,21 @@ Provide access to a folder in SharePoint, and we'll keep it in sync. The integra
   </Card>
 </CardGroup>
 
+#### How the sync works
+
+Passionfruit syncs the documents in your SharePoint folder and keeps them in sync. SharePoint always stays the source of truth.
+
+- **Always the latest version.** New and changed files in SharePoint are picked up automatically. Updated files are saved as a [new version](/docs/knowledge-base/evidence-versions), so the history is kept.
+- **Read-only.** Passionfruit never edits or deletes files in your SharePoint.
+- **Linked to the source.** Every document in Passionfruit points to its location in SharePoint.
+
+**Why sync instead of reading SharePoint during each task?**
+
+- **Fast.** Documents are already indexed, so the agent finds the right one in seconds, even across thousands of files.
+- **Reliable.** Tasks do not depend on a live connection to SharePoint at the moment someone starts them.
+- **Automatic.** The agent finds the right documents itself. Your team does not have to look up and select files first.
+- **Organized.** Synced documents are linked to the right products, customers, and suppliers, so the agent knows what each document is about.
+
 #### Managing integrations
 
 Once the integration is set up, you can manage it from **Settings → Integrations**. Here you see which integrations are active, when they last synced, and whether there are any issues. You can also request new integrations from this page.
