@@ -97,27 +97,30 @@ flowchart LR
 
 ### How the integration layer works
 
-The integration layer sits between the agent and your systems. It has three parts.
+The integration layer sits between the agent and your systems. It is built up in layers, and every request from the agent passes through all of them.
+
+<div className="bg-[#FDFDFD] rounded-lg flex items-center justify-center overflow-hidden outline-[0.5px] outline outline-black/10 p-4">
+  <img
+    src="/images/integrations/integration-layer-stack.svg"
+    alt="Stacked layers: agent, capabilities, company knowledge, your policies, connectors, and your systems"
+    className="w-full max-w-xl h-auto my-0"
+  />
+</div>
 
 <Steps>
-  <Step title="Capabilities: what the agent asks for">
-    The agent never talks to a system directly. It asks in simple terms, such as _search products_, _read supplier_, _get specification_, or _read document_. The same capabilities work for every customer and every system.
-  </Step>
-  <Step title="Connectors: how your system answers">
-    A connector translates each capability into a call to your system, and the answer back into something the agent understands. For the integration library, connectors are ready to use. For custom integrations, we build them for your system, with a skill or a custom script when needed.
+  <Step title="Capabilities: what the agent can do">
+    The agent never talks to a system directly. It uses a fixed set of capabilities, such as _search products_, _read supplier_, _get specification_, or _read document_. When you allow it, also write actions, such as _update a supplier record_ or _save a completed document_. The same capabilities work for every system.
   </Step>
   <Step title="Company knowledge: what is right for you">
-    On top of that, the layer knows how your company works: which system holds which information, which fields to use, and which source wins when two disagree. For example: use the external tolerance limits, not the internal ones, and take allergens from the specification, not from the product sheet. We set this up together with you.
+    The layer knows how your company works: which system holds which information, which fields to use, and which source wins when two disagree. For example: use the external tolerance limits, not the internal ones. We set this up together with you.
+  </Step>
+  <Step title="Your policies: who may see and do what">
+    Your own rules always apply. Access follows your permissions, for example in Microsoft Entra ID, so the agent only sees what you allow. Write actions follow your approval flow: nothing is changed in your systems until someone on your team approves it.
+  </Step>
+  <Step title="Connectors: how your system answers">
+    A connector translates each request into a call to your system, and the answer back into something the agent understands. For the integration library, connectors are ready to use. For custom integrations, we build them for your system, with a skill or a custom script when needed.
   </Step>
 </Steps>
-
-```mermaid
-flowchart LR
-  A["Agent"] --> B["Capabilities<br/>search, read, get"]
-  K["Company knowledge<br/>where and which fields"] --> B
-  B --> C["Connectors"]
-  C --> D["Your systems"]
-```
 
 **It gets better over time**
 
