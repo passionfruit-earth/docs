@@ -78,7 +78,6 @@
             "icon": "plug",
             "collapsed": true,
             "pages": [
-              "docs/integrate-with-passionfruit",
               "docs/sharepoint",
               "docs/google-drive",
               "docs/custom-integrations"
